@@ -1,0 +1,9 @@
+~ Steps to a successful run ~
+
+1. Clone/Download the Repository in the desired location in your Ubuntu.
+
+2. Navigate to the directory where you downloaded.
+
+3. Open "Ubuntu-AIO_Debloat-SetUp" folder, then right-click, 'Open in Terminal'.
+
+4. Type "sudo bash run.sh" to run successfully!
