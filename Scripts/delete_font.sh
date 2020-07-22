@@ -9,6 +9,7 @@ fi
 
 # run only if a superuser
 if [[ $EUID -ne 0 ]]; then
+	#every zenity command will have height=480 and width=720 for the sake of uniformity
 	zenity --error --icon-name=error --title="ROOT permission required!" --text="\nThis script requires ROOT permission. Run with sudo!" --no-wrap 2>/dev/null
 	notify-send -u normal "ERROR" "Re-run "$(basename "$0")""
    	exit 1
@@ -18,7 +19,7 @@ else
 	# here SEL=$ cannot contain whitespace
 	SEL=$( zenity --list --multiple\
 				--text "The following fonts will be removed" 2>/dev/null\
-				--checklist --height=480 --ok-label "Remove"\
+				--checklist --height=480 --width=720 --ok-label "Remove"\
 				--column "Pick" --column "Fonts"\
 				TRUE fonts-arabeyes\
 				TRUE fonts-arphic-*\
@@ -66,20 +67,20 @@ else
 			fi
 			#sleep 0.01 ;
 		done		
-	) | zenity --progress --auto-close --width=540 --pulsate --no-cancel --title "Removing Fonts" 2>/dev/null
+	) | zenity --progress --auto-close --width=720 --pulsate --no-cancel --title "Removing Fonts" 2>/dev/null
 
 	# Fixing font cache"
 	(
 		sudo fc-cache -fv
-	) | zenity --progress --auto-close --no-cancel --pulsate --width=540 --title "Refreshing Font Cache" 2>/dev/null
+	) | zenity --progress --auto-close --no-cancel --pulsate --width=720 --title "Refreshing Font Cache" 2>/dev/null
 
 	(
 	sudo dpkg-reconfigure fontconfig
-	) | zenity --progress --auto-close --no-cancel --pulsate --width=540 --title "Reconfiguring Fonts" 2>/dev/null
+	) | zenity --progress --auto-close --no-cancel --pulsate --width=720 --title "Reconfiguring Fonts" 2>/dev/null
  
 	(
 	# Show the remaining installed fonts
 	dpkg -l fonts\* | grep ^ii | awk '{print $2}'
-	) | zenity --text-info --title "(Installed) Remaining Fonts" --height=540 --width=280 --no-wrap --ok-label "Done" 2>/dev/null
+	) | zenity --text-info --title "(Installed) Remaining Fonts" --height=480 --width=720 --no-wrap --ok-label "Done" 2>/dev/null
 
 fi
