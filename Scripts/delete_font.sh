@@ -10,11 +10,12 @@ fi
 # run only if a superuser
 if [[ $EUID -ne 0 ]]; then
 	zenity --error --icon-name=error --title="ROOT permission required!" --text="\nThis script requires ROOT permission. Run with sudo!" --no-wrap 2>/dev/null
-	notify-send -u normal "ERROR" "Re-run run.sh"
+	notify-send -u normal "ERROR" "Re-run "$(basename "$0")""
    	exit 1
 else
 # if all permissions granted
 	# selecting fonts to uninstall
+	# here SEL=$ cannot contain whitespace
 	SEL=$( zenity --list --multiple\
 				--text "The following fonts will be removed" 2>/dev/null\
 				--checklist --height=480 --ok-label "Remove"\
@@ -55,6 +56,7 @@ else
 	(
 		for i in $(echo $SEL | tr "|" "\n") ;
 		do 
+			echo -e "#Removing $i";
 			sudo apt-get autoremove --purge -y $i
 			# For Droid Fonts:
 			if [[ $i =~ "fonts-droid_fallback" ]]; then
@@ -62,7 +64,6 @@ else
 				sudo rm DroidKufi-Bold.ttf DroidKufi-Regular.ttf DroidNaskh-Bold.ttf DroidNaskh-Regular.ttf DroidNaskhUI-Regular.ttf DroidSansArabic.ttf DroidSansArmenian.ttf DroidSansEthiopic-Bold.ttf DroidSansEthiopic-Regular.ttf DroidSansGeorgian.ttf DroidSansHebrew-Bold.ttf DroidSansHebrew-Regular.ttf DroidSansJapanese.ttf DroidSansFallbackFull.ttf
 				cd 
 			fi
-			echo -e "#Removing $i";
 			#sleep 0.01 ;
 		done		
 	) | zenity --progress --auto-close --width=540 --pulsate --no-cancel --title "Removing Fonts" 2>/dev/null
