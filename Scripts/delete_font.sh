@@ -59,6 +59,10 @@ else
   		zenity --warning --title="Operation Cancelled"\
 		--text "\nOperation cancelled by user. No Fonts will be removed!"\
 		2>/dev/null --no-wrap
+	elif [[ -z "$SEL"  ]]; then
+		zenity --warning\
+		--text "\nNo Font Selected. Nothing will be removed!"\
+		2>/dev/null --no-wrap
 	else
 		#removing all the selected languages
 		(
