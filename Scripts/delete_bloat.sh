@@ -25,14 +25,21 @@ else
 				TRUE rhythmbox "RhythmBox Music Player");
 
 	#column="2" is sent to output by default
+	
+	if [[ $? -eq 0 && -z "$AUDIO"  ]]; then
+		zenity --warning\
+		--text "\nNo Option Selected. Nothing will be removed!"\
+		2>/dev/null --no-wrap
+	else 
 	#removing the selected Audio Software(s)
-	(
-		for i in $(echo $AUDIO | tr "|" "\n") ;
-		do
-			echo -e "#Removing $i";
-			sudo apt-get autoremove --purge -y $i
-		done
-	) | zenity --progress --auto-close --width=720 --pulsate --no-cancel --title "Removing Audio Software(s)" 2>/dev/null
+		(
+			for i in $(echo $AUDIO | tr "|" "\n") ;
+			do
+				echo -e "#Removing $i";
+				sudo apt-get autoremove --purge -y $i
+			done
+		) | zenity --progress --auto-close --width=720 --pulsate --no-cancel --title "Removing Audio Software(s)" 2>/dev/null
+	fi
 
 
 #--------- EMAIL CLIENT ---------#
@@ -42,15 +49,21 @@ else
 				--checklist --height=480 --width=720 --ok-label "Remove" --cancel-label "Skip"\
 				--column "Pick" --column "Software(s)"\
 				TRUE evolution );
-
+	
+	if [[ $? -eq 0 && -z "$EMAIL"  ]]; then
+		zenity --warning\
+		--text "\nNo Option Selected. Nothing will be removed!"\
+		2>/dev/null --no-wrap
+	else 
 	#removing the selected Email Client(s)
-	(
-		for i in $(echo $EMAIL | tr "|" "\n") ;
-		do
-			echo -e "#Removing $i";
-			sudo apt-get autoremove --purge -y $i
-		done
-	) | zenity --progress --auto-close --width=720 --pulsate --no-cancel --title "Removing Email Client(s)" 2>/dev/null
+		(
+			for i in $(echo $EMAIL | tr "|" "\n") ;
+			do
+				echo -e "#Removing $i";
+				sudo apt-get autoremove --purge -y $i
+			done
+		) | zenity --progress --auto-close --width=720 --pulsate --no-cancel --title "Removing Email Client(s)" 2>/dev/null
+	fi
 
 
 #--------- GAMES ---------#
@@ -65,14 +78,20 @@ else
 				TRUE gnome-sudoku\
 				TRUE quadrapassel );
 
+	if [[ $? -eq 0 && -z "$GAME"  ]]; then
+		zenity --warning\
+		--text "\nNo Option Selected. Nothing will be removed!"\
+		2>/dev/null --no-wrap
+	else 
 	#removing the selected Game(s)
-	(
-		for i in $(echo $GAME | tr "|" "\n") ;
-		do
-			echo -e "#Removing $i";
-			sudo apt-get autoremove --purge -y $i
-		done
-	) | zenity --progress --auto-close --width=720 --pulsate --no-cancel --title "Removing Game(s)" 2>/dev/null
+		(
+			for i in $(echo $GAME | tr "|" "\n") ;
+			do
+				echo -e "#Removing $i";
+				sudo apt-get autoremove --purge -y $i
+			done
+		) | zenity --progress --auto-close --width=720 --pulsate --no-cancel --title "Removing Game(s)" 2>/dev/null
+	fi
 
 
 #--------- PHOTO ---------#
@@ -86,14 +105,20 @@ else
 				TRUE gimp\
 				TRUE shotwell );
 
+	if [[ $? -eq 0 && -z "$PHOTO"  ]]; then
+		zenity --warning\
+		--text "\nNo Option Selected. Nothing will be removed!"\
+		2>/dev/null --no-wrap
+	else 
 	#removing the selected Photo Software(s)
-	(
-		for i in $(echo $PHOTO | tr "|" "\n") ;
-		do
-			echo -e "#Removing $i";
-			sudo apt-get autoremove --purge -y $i
-		done
-	) | zenity --progress --auto-close --width=720 --pulsate --no-cancel --title "Removing Photo Software(s)" 2>/dev/null
+		(
+			for i in $(echo $PHOTO | tr "|" "\n") ;
+			do
+				echo -e "#Removing $i";
+				sudo apt-get autoremove --purge -y $i
+			done
+		) | zenity --progress --auto-close --width=720 --pulsate --no-cancel --title "Removing Photo Software(s)" 2>/dev/null
+	fi
 
 
 #--------- UTILITY ---------#
@@ -113,14 +138,20 @@ else
 				TRUE remmina\
 				TRUE yelp );
 
+	if [[ $? -eq 0 && -z "$UTILITY"  ]]; then
+		zenity --warning\
+		--text "\nNo Option Selected. Nothing will be removed!"\
+		2>/dev/null --no-wrap
+	else 
 	#removing the selected Utility Software(s)
-	(
-		for i in $(echo $UTILITY | tr "|" "\n") ;
-		do
-			echo -e "#Removing $i";
-			sudo apt-get autoremove --purge -y $i
-		done
-	) | zenity --progress --auto-close --width=720 --pulsate --no-cancel --title "Removing Utility Software(s)" 2>/dev/null
+		(
+			for i in $(echo $UTILITY | tr "|" "\n") ;
+			do
+				echo -e "#Removing $i";
+				sudo apt-get autoremove --purge -y $i
+			done
+		) | zenity --progress --auto-close --width=720 --pulsate --no-cancel --title "Removing Utility Software(s)" 2>/dev/null
+	fi
 
 
 #--------- VIDEO ---------#
@@ -131,13 +162,25 @@ else
 				--column "Pick" --column "Software(s)"\
 				TRUE pitivi\
 				TRUE totem );
-
+	
+	if [[ $? -eq 0 && -z "$VIDEO"  ]]; then
+		zenity --warning\
+		--text "\nNo Option Selected. Nothing will be removed!"\
+		2>/dev/null --no-wrap
+	else 
 	#removing the selected Utility Software(s)
-	(
-		for i in $(echo $VIDEO | tr "|" "\n") ;
-		do
-			echo -e "#Removing $i";
-			sudo apt-get autoremove --purge -y $i
-		done
-	) | zenity --progress --auto-close --width=720 --pulsate --no-cancel --title "Removing Video Software(s)" 2>/dev/null
+		(
+			for i in $(echo $VIDEO | tr "|" "\n") ;
+			do
+				echo -e "#Removing $i";
+				sudo apt-get autoremove --purge -y $i
+			done
+		) | zenity --progress --auto-close --width=720 --pulsate --no-cancel --title "Removing Video Software(s)" 2>/dev/null
+	fi
+
+	if [[ ! -z $AUDIO || ! -z $EMAIL || ! -z $GAME || ! -z $PHOTO || ! -z $UTILITY || ! -z $VIDEO ]]; then
+		#notify-send cannot work as root
+		USER=$(cat /etc/passwd|grep 1000|sed "s/:.*$//g");
+		su $USER -c "/usr/bin/notify-send -u normal 'Complete' 'Softwares Removed'"
+	fi	
 fi
