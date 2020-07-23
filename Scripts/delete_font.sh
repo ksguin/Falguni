@@ -20,6 +20,7 @@ else
 	SEL=$( zenity --list --multiple\
 				--text "The following fonts will be removed" 2>/dev/null\
 				--checklist --height=480 --width=720 --ok-label "Remove"\
+				--cancel-label "Exit"\
 				--column "Pick" --column "Fonts"\
 				TRUE fonts-arabeyes\
 				TRUE fonts-arphic-*\
@@ -52,35 +53,48 @@ else
 				TRUE fonts-tibetan-machine\
 				TRUE fonts-tlwg-*\
 				TRUE fonts-wqy-microhei );
-	
-	#removing all the selected languages
-	(
-		for i in $(echo $SEL | tr "|" "\n") ;
-		do 
-			echo -e "#Removing $i";
-			sudo apt-get autoremove --purge -y $i
-			# For Droid Fonts:
-			if [[ $i =~ "fonts-droid_fallback" ]]; then
-    				cd /usr/share/fonts/truetype/droid/
-				sudo rm DroidKufi-Bold.ttf DroidKufi-Regular.ttf DroidNaskh-Bold.ttf DroidNaskh-Regular.ttf DroidNaskhUI-Regular.ttf DroidSansArabic.ttf DroidSansArmenian.ttf DroidSansEthiopic-Bold.ttf DroidSansEthiopic-Regular.ttf DroidSansGeorgian.ttf DroidSansHebrew-Bold.ttf DroidSansHebrew-Regular.ttf DroidSansJapanese.ttf DroidSansFallbackFull.ttf
-				cd 
-			fi
-			#sleep 0.01 ;
-		done		
-	) | zenity --progress --auto-close --width=720 --pulsate --no-cancel --title "Removing Fonts" 2>/dev/null
 
-	# Fixing font cache"
-	(
-		sudo fc-cache -fv
-	) | zenity --progress --auto-close --no-cancel --pulsate --width=720 --title "Refreshing Font Cache" 2>/dev/null
+	# pressed Cancel or closed the dialog window 
+	if [[ $? -eq 1 ]]; then 
+  		zenity --warning --title="Operation Cancelled"\
+		--text "\nOperation cancelled by user. No Fonts will be removed!"\
+		2>/dev/null --no-wrap
+	else
+		#removing all the selected languages
+		(
+			for i in $(echo $SEL | tr "|" "\n") ;
+			do 
+				echo -e "#Removing $i";
+				sudo apt-get autoremove --purge -y $i
+				# For Droid Fonts:
+				if [[ $i =~ "fonts-droid_fallback" ]]; then
+    					cd /usr/share/fonts/truetype/droid/
+					sudo rm DroidKufi-Bold.ttf DroidKufi-Regular.ttf DroidNaskh-Bold.ttf DroidNaskh-Regular.ttf DroidNaskhUI-Regular.ttf DroidSansArabic.ttf DroidSansArmenian.ttf DroidSansEthiopic-Bold.ttf DroidSansEthiopic-Regular.ttf DroidSansGeorgian.ttf DroidSansHebrew-Bold.ttf DroidSansHebrew-Regular.ttf DroidSansJapanese.ttf DroidSansFallbackFull.ttf
+					cd 
+				fi
+				#sleep 0.01 ;
+			done		
+		) | zenity --progress --auto-close --width=720 --pulsate --no-cancel --title "Removing Fonts" 2>/dev/null
 
-	(
-	sudo dpkg-reconfigure fontconfig
-	) | zenity --progress --auto-close --no-cancel --pulsate --width=720 --title "Reconfiguring Fonts" 2>/dev/null
+		# Fixing font cache"
+		(
+			sudo fc-cache -fv
+		) | zenity --progress --auto-close --no-cancel --pulsate --width=720 --title "Refreshing Font Cache" 2>/dev/null
+
+		(
+		sudo dpkg-reconfigure fontconfig
+		) | zenity --progress --auto-close --no-cancel --pulsate --width=720 --title "Reconfiguring Fonts" 2>/dev/null
  
-	(
-	# Show the remaining installed fonts
-	dpkg -l fonts\* | grep ^ii | awk '{print $2}'
-	) | zenity --text-info --title "(Installed) Remaining Fonts" --height=480 --width=720 --no-wrap --ok-label "Done" 2>/dev/null
+		(
+		# Show the remaining installed fonts
+		echo -e "This box will automatically close in 30s..."
+		dpkg -l fonts\* | grep ^ii | awk '{print $2}'
+		) | zenity --text-info --title "(Installed) Remaining Fonts"\
+		--height=480 --width=720 --no-wrap --ok-label "Done" --cancel-label "Proceed"\
+		--timeout=30 2>/dev/null
 
+		#notify-send cannot work as root
+		USER=$(cat /etc/passwd|grep 1000|sed "s/:.*$//g");
+		su $USER -c "/usr/bin/notify-send -u normal 'Complete' 'Fonts Removed'"
+	fi
 fi
