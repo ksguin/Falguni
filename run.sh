@@ -18,19 +18,20 @@ else
 	SEL=$( zenity --list --checklist\
 		2>/dev/null --height=480 --width=720\
 		--text="Don't worry! You will get sub-choices for each selection."\
-		--ok-label "Remove" --cancel-label "Exit"\
-		--column "Pick" --column "Remove What" 	--column "Description"\
+		--ok-label "Start" --cancel-label "Exit"\
+		--column "Pick" --column "Operation" 	--column "Description"\
 		TRUE 		FONT			"Deletes Unnecessary Fonts"\
-		TRUE 		BLOATWARE 		"Deletes Pre-installed Softwares" );
+		TRUE 		BLOATWARE 		"Deletes Pre-installed Softwares"\
+		TRUE		INSTALL			"Installs Your Preferred Softwares" );
 
 	# pressed Cancel or closed the dialog window 
 	if [[ $? -eq 1 ]]; then 
   		zenity --warning --title="Cancelled"\
-		--text "\nOperation cancelled by user. Nothing will be removed!"\
+		--text "\nOperation cancelled by user. Nothing will be done!"\
 		2>/dev/null --no-wrap
 	elif [[ -z "$SEL"  ]]; then
 		zenity --warning\
-		--text "\nNo Option Selected. Nothing will be removed!"\
+		--text "\nNo Option Selected. Nothing will be done!"\
 		2>/dev/null --no-wrap
 	else
 		for option in $(echo $SEL | tr "|" "\n"); do
@@ -50,6 +51,16 @@ else
 			"BLOATWARE")	#Bloatware deletion script
 				if find ./Scripts/delete_bloat.sh -quit; then
 					source ./Scripts/delete_bloat.sh
+				else
+					zenity --error --title="File Not Found"\
+						2>/dev/null --no-wrap\
+						--text="\nCannot locate File!"
+				fi
+				;;
+
+			"INSTALL")	#Software Installation script
+				if find ./Scripts/install_software.sh -quit; then
+					source ./Scripts/install_software.sh
 				else
 					zenity --error --title="File Not Found"\
 						2>/dev/null --no-wrap\
