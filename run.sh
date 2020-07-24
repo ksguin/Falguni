@@ -14,14 +14,14 @@ if [[ $EUID -ne 0 ]]; then
 	notify-send -u normal "ERROR" "Re-run "$(basename "$0")""
    	exit 1
 else
-	#Zenity Checklist for all the scripts <write here>	
+	#Zenity Checklist for all the scripts
 	SEL=$( zenity --list --checklist\
 		2>/dev/null --height=480 --width=720\
 		--text="Don't worry! You will get sub-choices for each selection."\
 		--ok-label "Remove" --cancel-label "Exit"\
 		--column "Pick" --column "Remove What" 	--column "Description"\
 		TRUE 		FONT			"Deletes Unnecessary Fonts"\
-		TRUE 		SOFTWARE 		"Deletes Pre-installed Softwares" );
+		TRUE 		BLOATWARE 		"Deletes Pre-installed Softwares" );
 
 	# pressed Cancel or closed the dialog window 
 	if [[ $? -eq 1 ]]; then 
@@ -47,7 +47,7 @@ else
 				fi
 				;;
 
-			"SOFTWARE")	#Software deletion script
+			"BLOATWARE")	#Bloatware deletion script
 				if find ./Scripts/delete_bloat.sh -quit; then
 					source ./Scripts/delete_bloat.sh
 				else
