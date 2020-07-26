@@ -83,12 +83,89 @@ else
 	fi
 #----------------- AUDIO & VIDEO end ------------------#
 
+#--------- COMMUNICATION & BROWSERS ----------#
+	CNB=$( zenity --list --checklist\
+		2>/dev/null --height=480 --width=720\
+		--title="Select items to Install"\
+		--text="The following Software(s) will be Installed"\
+		--ok-label "Install" --cancel-label "Skip"\
+		--column "Pick" --column "Software(s)" 	--column "Description"\
+		FALSE 		Discord			"All-in-one voice and text chat for Gamers"\
+		FALSE 		'Google Chrome' 	"A cross-platform web browser by Google" );
+	
+	#this is mandatory for the space in the "Software(s)" column, e.g. 'Android Studio', also IFS unset later
+	IFS=:
+
+	#column="2" is sent to output by default
+	if [[ $? -eq 0 && -z "$CNB"  ]]; then
+		zenity --warning\
+		--text "\nNo Option Selected. Nothing will be installed!"\
+		2>/dev/null --no-wrap
+	else 
+		for option in $(echo $CNB | tr "|" "\n"); do
+
+			case $option in
+
+			"Discord")		#Discord
+					#if already present, don't install
+					if [[ "discord" == $(snap list | awk {'print $1'} | grep 'discord') ]]; then
+						zenity --info --timeout 5\
+						--text="\nDiscord Already Installed\t\t"\
+						--title "Installed" --no-wrap 2>/dev/null
+					else
+						sudo snap install discord 2>&1 | \
+						tee >( \
+						zenity --progress --pulsate --width=720\
+						--text="Downloading Discord..." --auto-kill --auto-close --no-cancel\
+						2>/dev/null)
+				
+						#Installation Complete Dialog
+						zenity --info --timeout 5\
+						--text="\nInstallation Complete\t\t"\
+						--title "Discord" --no-wrap 2>/dev/null
+					fi
+				;;
+
+			"Google Chrome")			#Google Chrome web browser
+					#if already present, don't install
+					if [[ $(which google-chrome-stable | grep -w "google-chrome-stable" | awk {'print $0'}) ]]; then
+						zenity --info --timeout 5\
+						--text="\nGoogle Chrome Already Installed\t\t"\
+						--title "Installed" --no-wrap 2>/dev/null
+					else
+						wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+						sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+						
+						#Refreshing apt
+						(sudo apt update 2>/dev/null | \
+						tee >(xargs -I % echo "#%")) | \
+						zenity --progress --width=720 --pulsate \
+						--no-cancel --auto-kill --auto-close 2>/dev/null
+
+						#Installing Google Chrome
+						(sudo apt-get -y install google-chrome-stable 2>/dev/null | \
+						tee >(xargs -I % echo "#%")) | \
+						zenity --progress --width=720 --pulsate \
+						--no-cancel --auto-kill --auto-close 2>/dev/null
+
+						#Installation Complete Dialog
+						zenity --info --timeout 5\
+						--text="\nInstallation Complete\t\t"\
+						--title "Google Chrome" --no-wrap 2>/dev/null
+					fi
+				;;
+			esac
+		done
+	fi
+	unset IFS
+#------------ COMMUNICATION & BROWSERS end ------------#
+
 #----------------- UTILITIES -----------------#
 	UTIL=$( zenity --list --checklist\
 		2>/dev/null --height=480 --width=720\
 		--title="Select items to Install"\
 		--text="The following Software(s) will be Installed"\
-		--ok-label "Install" --cancel-label "Exit"\
+		--ok-label "Install" --cancel-label "Skip"\
 		--column "Pick" --column "Software(s)" 	--column "Description"\
 		FALSE 		'Android Studio'	"Android Studio IDE for Android"\
 		FALSE 		Stacer 			"Linux System Optimizer & Monitoring" );
@@ -146,7 +223,7 @@ else
 						--no-cancel --auto-kill --auto-close 2>/dev/null
 
 						#Installing Stacer
-						(sudo apt-get install stacer 2>/dev/null | \
+						(sudo apt-get -y install stacer 2>/dev/null | \
 						tee >(xargs -I % echo "#%")) | \
 						zenity --progress --width=720 --pulsate \
 						--no-cancel --auto-kill --auto-close 2>/dev/null
