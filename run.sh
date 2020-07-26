@@ -1,5 +1,23 @@
 #!/bin/bash
 
+if [[ $EUID -ne 0 ]]; then
+	echo "Run with sudo";
+	exit 0
+else
+	if [ -f .flagfile.txt ]; then
+		if [[ $(head -1 ".flagfile.txt" | grep -wl "DONE" ) ]] ; then	#error
+			:
+		else
+			rm .flagfile.txt
+			echo "DONE" > .flagfile.txt
+			sudo update-manager 2>/dev/null
+		fi
+	else
+		echo "DONE" > .flagfile.txt
+		sudo update-manager 2>/dev/null
+	fi
+fi
+
 # check if zenity is installed, if not install it
 if [ "$(dpkg -l | awk '/zenity/ {print }'|wc -l)" -ge 1 ]; then
   	:
