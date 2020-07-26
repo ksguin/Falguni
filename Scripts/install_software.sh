@@ -18,9 +18,6 @@ else
 	##Communication & Browsers
 	#- Google Chrome
 	#- Discord
-
-	##Utilities
-	#- Stacer
 	
 #------------- AUDIO & VIDEO -------------#
 	AAV=$( zenity --list --checklist\
@@ -49,7 +46,7 @@ else
 						--text="\nSpotify Already Installed\t\t"\
 						--title "Installed" --no-wrap 2>/dev/null
 					else
-						pkexec snap install spotify 2>&1 | \
+						sudo snap install spotify 2>&1 | \
 						tee >( \
 						zenity --progress --pulsate --width=720\
 						--text="Downloading Spotify..." --auto-kill --auto-close --no-cancel\
@@ -69,7 +66,7 @@ else
 						--text="\nVLC Already Installed\t\t"\
 						--title "Installed" --no-wrap 2>/dev/null
 					else
-						pkexec snap install vlc 2>&1 | \
+						sudo snap install vlc 2>&1 | \
 						tee >( \
 						zenity --progress --pulsate --width=720\
 						--text="Downloading VLC..." --auto-kill --auto-close --no-cancel\
@@ -126,6 +123,38 @@ else
 						zenity --info --timeout 5\
 						--text="\nInstallation Complete\t\t"\
 						--title "Android Studio" --no-wrap 2>/dev/null
+					fi
+				;;
+
+			"Stacer")			#Stacer Linux Optimizer & Monitoring
+					#if already present, don't install
+					if [[ $(which stacer | grep -w "stacer" | awk {'print $0'}) ]]; then
+						zenity --info --timeout 5\
+						--text="\nStacer Already Installed\t\t"\
+						--title "Installed" --no-wrap 2>/dev/null
+					else
+						#Adding ppa for Stacer
+						(sudo add-apt-repository -y ppa:oguzhaninan/stacer 2>/dev/null | \
+						tee >(xargs -I % echo "#%")) | \
+						zenity --progress --width=720 --pulsate \
+						--no-cancel --auto-kill --auto-close 2>/dev/null
+						
+						#Refreshing apt-get
+						(sudo apt-get update 2>/dev/null | \
+						tee >(xargs -I % echo "#%")) | \
+						zenity --progress --width=720 --pulsate \
+						--no-cancel --auto-kill --auto-close 2>/dev/null
+
+						#Installing Stacer
+						(sudo apt-get install stacer 2>/dev/null | \
+						tee >(xargs -I % echo "#%")) | \
+						zenity --progress --width=720 --pulsate \
+						--no-cancel --auto-kill --auto-close 2>/dev/null
+
+						#Installation Complete Dialog
+						zenity --info --timeout 5\
+						--text="\nInstallation Complete\t\t"\
+						--title "Stacer" --no-wrap 2>/dev/null
 					fi
 				;;
 			esac
