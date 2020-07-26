@@ -27,7 +27,7 @@ else
 		2>/dev/null --height=480 --width=720\
 		--title="Select items to Install"\
 		--text="The following Software(s) will be Installed"\
-		--ok-label "Install" --cancel-label "Exit"\
+		--ok-label "Install" --cancel-label "Skip"\
 		--column "Pick" --column "Software(s)" 	--column "Description"\
 		FALSE 		Spotify			"Spotify Music Player"\
 		TRUE 		VLC 			"VLC Media Player" );
@@ -84,5 +84,53 @@ else
 			esac
 		done
 	fi
-#------------- AUDIO & VIDEO end -------------#
+#----------------- AUDIO & VIDEO end ------------------#
+
+#----------------- UTILITIES -----------------#
+	UTIL=$( zenity --list --checklist\
+		2>/dev/null --height=480 --width=720\
+		--title="Select items to Install"\
+		--text="The following Software(s) will be Installed"\
+		--ok-label "Install" --cancel-label "Exit"\
+		--column "Pick" --column "Software(s)" 	--column "Description"\
+		FALSE 		'Android Studio'	"Android Studio IDE for Android"\
+		FALSE 		Stacer 			"Linux System Optimizer & Monitoring" );
+	
+	#this is mandatory for the space in the "Software(s)" column, e.g. 'Android Studio', also IFS unset later
+	IFS=:
+
+	#column="2" is sent to output by default
+	if [[ $? -eq 0 && -z "$UTIL"  ]]; then
+		zenity --warning\
+		--text "\nNo Option Selected. Nothing will be installed!"\
+		2>/dev/null --no-wrap
+	else 
+		for option in $(echo $UTIL | tr "|" "\n"); do
+
+			case $option in
+
+			"Android Studio")		#Android Studio IDE
+					#if already present, don't install
+					if [[ "android-studio" == $(snap list | awk {'print $1'} | grep 'android-studio') ]]; then
+						zenity --info --timeout 5\
+						--text="\nAndroid Studio Already Installed\t\t"\
+						--title "Installed" --no-wrap 2>/dev/null
+					else
+						sudo snap install android-studio --classic 2>&1 | \
+						tee >( \
+						zenity --progress --pulsate --width=720\
+						--text="Downloading Android Studio..." --auto-kill --auto-close --no-cancel\
+						2>/dev/null)
+				
+						#Installation Complete Dialog
+						zenity --info --timeout 5\
+						--text="\nInstallation Complete\t\t"\
+						--title "Android Studio" --no-wrap 2>/dev/null
+					fi
+				;;
+			esac
+		done
+	fi
+	unset IFS
+#-------------------- UTILITIES end -------------------#
 fi
