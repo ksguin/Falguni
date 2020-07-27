@@ -87,7 +87,7 @@ else
 		--ok-label "Install" --cancel-label "Skip"\
 		--column "Pick" --column "Software(s)" 	--column "Description"\
 		FALSE 		Discord			"All-in-one voice and text chat for Gamers"\
-		FALSE 		'Google Chrome' 	"A cross-platform web browser by Google" );
+		TRUE 		'Google Chrome' 	"A cross-platform web browser by Google" );
 	
 	#this is mandatory for the space in the "Software(s)" column, e.g. 'Android Studio', also IFS unset later
 	IFS=:
@@ -164,7 +164,7 @@ else
 		--ok-label "Install" --cancel-label "Skip"\
 		--column "Pick" --column "Software(s)" 	--column "Description"\
 		FALSE 		'Android Studio'	"Android Studio IDE for Android"\
-		FALSE 		Stacer 			"Linux System Optimizer & Monitoring" );
+		TRUE 		Stacer 			"Linux System Optimizer & Monitoring" );
 	
 	#this is mandatory for the space in the "Software(s)" column, e.g. 'Android Studio', also IFS unset later
 	IFS=:
