@@ -58,55 +58,55 @@ No need to install! Download the zip, extract, and you're good to go!
   I have pre-ticked most of them to remove _(you may change it for sure)_, leaving a bare minimum apps required for viewing photos/utility.
 
   * ### Audio
-    - rhythmbox
+    - [X] rhythmbox
     
   * ### Email Client
-    - evolution
+    - [X] evolution
     
   * ### Games
-    - aisleriot 
-    - gnome-mahjongg
-    - gnome-mines
-    - gnome-sudoku
-    - quadrapassel
+    - [X] aisleriot 
+    - [X] gnome-mahjongg
+    - [X] gnome-mines
+    - [X] gnome-sudoku
+    - [X] quadrapassel
 
   * ### Photo
-    - cheese
-    - eog
-    - gimp
-    - shotwell
+    - [X] cheese
+    - [ ] eog
+    - [X] gimp
+    - [X] shotwell
     
   * ### Utility
-    - brasero
-    - deja-dup
-    - gnome-font-viewer
-    - gnome-calendar
-    - gnome-characters
-    - gnome-clocks
-    - gnome-contacts
-    - gnome-maps
-    - remmina
-    - yelp
+    - [X] brasero
+    - [X] deja-dup
+    - [ ] gnome-font-viewer
+    - [X] gnome-calendar
+    - [X] gnome-characters
+    - [X] gnome-clocks
+    - [X] gnome-contacts
+    - [X] gnome-maps
+    - [X] remmina
+    - [X] yelp
     
   * ### Video
-    - pitivi
-    - totem
+    - [X] pitivi
+    - [X] totem
     
 - ## Install List ([install_software.sh](https://github.com/ksguin/Ubuntu-AIO_Debloat-SetUp/blob/master/Scripts/install_software.sh))
   The following apps will be available in options in _checklist_ to be _installed_, based on its Category.
   I have pre-ticked some of the essential/mostly used Software(s), you surely have the full control though!
   
   * ### Audio & Video
-    - Spotify
-    - VLC Media Player
+    - [ ] Spotify
+    - [X] VLC Media Player
     
   * ### Communication & Browsers
-    - Discord
-    - Google Chrome
+    - [ ] Discord
+    - [X] Google Chrome
     
   * ### Utilities
-    - Android Studio
-    - Stacer
+    - [ ] Android Studio
+    - [X] Stacer
 
 ## Contributing
 Thanks for your interest in contributing! There are many ways to contribute to this project. Get started [here](https://github.com/ksguin/Ubuntu-AIO_Debloat-SetUp/blob/master/Documentation/CONTRIBUTING.md).
@@ -116,4 +116,3 @@ Contributor Covenant [Code of Conduct](https://github.com/ksguin/Ubuntu-AIO_Debl
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
-
