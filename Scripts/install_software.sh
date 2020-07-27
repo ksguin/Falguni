@@ -14,11 +14,7 @@ if [[ $EUID -ne 0 ]]; then
 	notify-send -u normal "ERROR" "Re-run "$(basename "$0")""
    	exit 1
 else
-#if all permissions granted
-	##Communication & Browsers
-	#- Google Chrome
-	#- Discord
-	
+#if all permissions granted	
 #------------- AUDIO & VIDEO -------------#
 	AAV=$( zenity --list --checklist\
 		2>/dev/null --height=480 --width=720\
