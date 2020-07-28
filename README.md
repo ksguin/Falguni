@@ -97,16 +97,25 @@ No need to install! Download the zip, extract, and you're good to go!
   I have pre-ticked some of the essential/mostly used Software(s), you surely have the full control though!
   
   * ### Audio & Video
-    - [ ] Spotify
-    - [X] VLC Media Player
+        
+    | Status			| Software 	| Description 		|
+    | :---: 			| :------	| --------------------- |
+    | <ul><li> [ ] </li></ul>	| Spotify 	| Spotify Music Player  |
+    | <ul><li> [x] </li></ul>	| VLC 		| VLC Media Player 	|
     
   * ### Communication & Browsers
-    - [ ] Discord
-    - [X] Google Chrome
+        
+    | Status			| Software 	| Description 				     |
+    | :---: 			| :------ 	| ------------------------------------------ |
+    | <ul><li> [ ] </li></ul>	| Discord 	| All-in-one voice and text chat for Gamers  |
+    | <ul><li> [x] </li></ul>	| Google Chrome	| A cross-platform web browser by Google     |
     
   * ### Utilities
-    - [ ] Android Studio
-    - [X] Stacer
+    
+    | Status			| Software 	 | Description 				      |
+    | :---: 			| :------ 	 | ------------------------------------------ |
+    | <ul><li> [ ] </li></ul>	| Android Studio | Android Studio IDE for Android	      |
+    | <ul><li> [x] </li></ul>	| Stacer	 | Linux System Optimizer & Monitoring	      |
 
 ## Contributing
 Thanks for your interest in contributing! There are many ways to contribute to this project. Get started [here](https://github.com/ksguin/Ubuntu-AIO_Debloat-SetUp/blob/master/Documentation/CONTRIBUTING.md).
@@ -116,3 +125,4 @@ Contributor Covenant [Code of Conduct](https://github.com/ksguin/Ubuntu-AIO_Debl
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
