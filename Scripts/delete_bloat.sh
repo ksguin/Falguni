@@ -22,7 +22,7 @@ else
 				--text "The following Audio Software(s) will be removed" 2>/dev/null\
 				--checklist --height=480 --width=720 --ok-label "Remove" --cancel-label "Skip"\
 				--column "Pick" --column "Software(s)" --column "Description"\
-				TRUE rhythmbox "RhythmBox Music Player");
+				TRUE rhythmbox "Default Music Player for GNOME");
 
 	#column="2" is sent to output by default
 	
@@ -47,8 +47,8 @@ else
 	EMAIL=$( zenity --list --multiple --title "Select items to Uninstall"\
 				--text "The following Email Client(s) will be removed" 2>/dev/null\
 				--checklist --height=480 --width=720 --ok-label "Remove" --cancel-label "Skip"\
-				--column "Pick" --column "Software(s)"\
-				TRUE evolution );
+				--column "Pick" --column "Software(s)" --column "Description"\
+				TRUE 		evolution 		"Default GNOME Email & Personal Information Manager" );
 	
 	if [[ $? -eq 0 && -z "$EMAIL"  ]]; then
 		zenity --warning\
@@ -71,12 +71,12 @@ else
 	GAME=$( zenity --list --multiple --title "Select items to Uninstall"\
 				--text "The following Game(s) will be removed" 2>/dev/null\
 				--checklist --height=480 --width=720 --ok-label "Remove" --cancel-label "Skip"\
-				--column "Pick" --column "Software(s)"\
-				TRUE aisleriot\
-				TRUE gnome-mahjongg\
-				TRUE gnome-mines\
-				TRUE gnome-sudoku\
-				TRUE quadrapassel );
+				--column "Pick" --column "Software(s)" --column "Description"\
+				TRUE 		aisleriot		"Collection of Card Games"\
+				TRUE 		gnome-mahjongg		"Solitare version of Eastern tile game, Mahjongg"\
+				TRUE 		gnome-mines		"A Puzzle Game where you locate Mines"\
+				TRUE 		gnome-sudoku		"The Japanese logic Game, Sudoku"\
+				TRUE 		quadrapassel 		"The classic falling-block Game, Tetris" );
 
 	if [[ $? -eq 0 && -z "$GAME"  ]]; then
 		zenity --warning\
@@ -99,11 +99,11 @@ else
 	PHOTO=$( zenity --list --multiple --title "Select items to Uninstall"\
 				--text "The following Photo Software(s) will be removed" 2>/dev/null\
 				--checklist --height=480 --width=720 --ok-label "Remove" --cancel-label "Skip"\
-				--column "Pick" --column "Software(s)"\
-				TRUE cheese\
-				FALSE eog\
-				TRUE gimp\
-				TRUE shotwell );
+				--column "Pick" --column "Software(s)" --column "Description"\
+				TRUE 		cheese			"Webcam application for GNOME Desktop"\
+				FALSE 		eog			"Eye of GNOME is the Default Image Viewer"\
+				TRUE 		gimp			"A versatile Image & Graphics Manipulation Software"\
+				TRUE 		shotwell 		"An Image Organizer & simple Image Editor for GNOME" );
 
 	if [[ $? -eq 0 && -z "$PHOTO"  ]]; then
 		zenity --warning\
@@ -126,17 +126,17 @@ else
 	UTILITY=$( zenity --list --multiple --title "Select items to Uninstall"\
 				--text "The following Utility Software(s) will be removed" 2>/dev/null\
 				--checklist --height=480 --width=720 --ok-label "Remove" --cancel-label "Skip"\
-				--column "Pick" --column "Software(s)"\
-				TRUE brasero\
-				TRUE deja-dup\
-				FALSE gnome-font-viewer\
-				TRUE gnome-calendar\
-				TRUE gnome-characters\
-				TRUE gnome-clocks\
-				TRUE gnome-contacts\
-				TRUE gnome-maps\
-				TRUE remmina\
-				TRUE yelp );
+				--column "Pick" --column "Software(s)" --column "Description"\
+				TRUE 		brasero			"GNOME application to burn CD/DVD"\
+				TRUE 		deja-dup		"Simple backup tool for GNOME"\
+				FALSE 		gnome-font-viewer	"Shows overview of Installed Fonts in GNOME"\
+				TRUE 		gnome-calendar		"Simple & Beautiful Calendar application for GNOME"\
+				TRUE 		gnome-characters	"Utility to find & insert unusual characters in GNOME"\
+				TRUE 		gnome-clocks		"Stopwatch, timer & world clock in GNOME"\
+				TRUE 		gnome-contacts		"Integrated contact address book for GNOME"\
+				TRUE 		gnome-maps		"A simple map client for GNOME"\
+				TRUE 		remmina			"Default remote desktop client for Linux"\
+				TRUE 		yelp 			"Default help viewer in GNOME" );
 
 	if [[ $? -eq 0 && -z "$UTILITY"  ]]; then
 		zenity --warning\
@@ -159,9 +159,9 @@ else
 	VIDEO=$( zenity --list --multiple --title "Select items to Uninstall"\
 				--text "The following Video Software(s) will be removed" 2>/dev/null\
 				--checklist --height=480 --width=720 --ok-label "Remove" --cancel-label "Skip"\
-				--column "Pick" --column "Software(s)"\
-				TRUE pitivi\
-				TRUE totem );
+				--column "Pick" --column "Software(s)" --column "Description"\
+				TRUE 		pitivi		"An open-source, free non-linear video editor for GNOME"\
+				TRUE 		totem		"A movie player for GNOME desktop" );
 	
 	if [[ $? -eq 0 && -z "$VIDEO"  ]]; then
 		zenity --warning\

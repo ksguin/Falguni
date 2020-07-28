@@ -58,39 +58,57 @@ No need to install! Download the zip, extract, and you're good to go!
   I have pre-ticked most of them to remove _(you may change it for sure)_, leaving a bare minimum apps required for viewing photos/utility.
 
   * ### Audio
-    - [X] rhythmbox
+
+    | Status			| Software 		| Description 				 |
+    | :---: 			| :------		| -------------------------------------- |
+    | <ul><li> [x] </li></ul>	| rhythmbox 		| Default Music Player for GNOME	 |
     
   * ### Email Client
-    - [X] evolution
+  
+    | Status			| Software 		| Description 						 |
+    | :---: 			| :------		| ------------------------------------------------------ |
+    | <ul><li> [x] </li></ul>	| evolution 		| Default GNOME Email & Personal Information Manager	 |
     
   * ### Games
-    - [X] aisleriot 
-    - [X] gnome-mahjongg
-    - [X] gnome-mines
-    - [X] gnome-sudoku
-    - [X] quadrapassel
+    
+    | Status			| Software 		| Description 						 |
+    | :---: 			| :------		| ------------------------------------------------------ |
+    | <ul><li> [x] </li></ul>	| aisleriot 		| Collection of Card Games	 			 |
+    | <ul><li> [x] </li></ul>	| gnome-mahjongg	| Solitare version of Eastern tile game, Mahjongg 	 |
+    | <ul><li> [x] </li></ul>	| gnome-mines	 	| A Puzzle Game where you locate Mines	 		 |
+    | <ul><li> [x] </li></ul>	| gnome-sudoku	 	| The Japanese logic Game, Sudoku			 |
+    | <ul><li> [x] </li></ul>	| quadrapassel	 	| The classic falling-block Game, Tetris		 |
 
   * ### Photo
-    - [X] cheese
-    - [ ] eog
-    - [X] gimp
-    - [X] shotwell
+    
+    | Status			| Software 	| Description 						 |
+    | :---: 			| :------	| ------------------------------------------------------ |
+    | <ul><li> [x] </li></ul>	| cheese 	| Webcam application for GNOME Desktop 			 |
+    | <ul><li> [ ] </li></ul>	| eog 		| Eye of GNOME is the Default Image Viewer		 |
+    | <ul><li> [x] </li></ul>	| gimp 		| A versatile Image & Graphics Manipulation Software 	 |
+    | <ul><li> [x] </li></ul>	| shotwell 	| An Image Organizer & simple Image Editor for GNOME	 |
     
   * ### Utility
-    - [X] brasero
-    - [X] deja-dup
-    - [ ] gnome-font-viewer
-    - [X] gnome-calendar
-    - [X] gnome-characters
-    - [X] gnome-clocks
-    - [X] gnome-contacts
-    - [X] gnome-maps
-    - [X] remmina
-    - [X] yelp
+  
+    | Status			| Software 		| Description 						 |
+    | :---: 			| :------		| ------------------------------------------------------ |
+    | <ul><li> [x] </li></ul>	| brasero 		| GNOME application to burn CD/DVD 			 |
+    | <ul><li> [x] </li></ul>	| deja-dup 		| Simple backup tool for GNOME 				 |
+    | <ul><li> [ ] </li></ul>	| gnome-font-viewer 	| Shows overview of Installed Fonts in GNOME 		 |
+    | <ul><li> [x] </li></ul>	| gnome-calendar 	| Simple & Beautiful Calendar application for GNOME	 |
+    | <ul><li> [x] </li></ul>	| gnome-characters 	| Utility to find & insert unusual characters in GNOME	 |
+    | <ul><li> [x] </li></ul>	| gnome-clocks	 	| Stopwatch, timer & world clock in GNOME		 |
+    | <ul><li> [x] </li></ul>	| gnome-contacts 	| Integrated contact address book for GNOME		 |
+    | <ul><li> [x] </li></ul>	| gnome-maps	 	| A simple map client for GNOME 			 |
+    | <ul><li> [x] </li></ul>	| remmina	 	| Default remote desktop client for Linux		 |
+    | <ul><li> [x] </li></ul>	| yelp		 	| Default help viewer in GNOME				 |
     
   * ### Video
-    - [X] pitivi
-    - [X] totem
+  
+    | Status			| Software 	| Description 						 |
+    | :---: 			| :------	| ------------------------------------------------------ |
+    | <ul><li> [x] </li></ul>	| pitivi 	| An open-source, free non-linear video editor for GNOME |
+    | <ul><li> [x] </li></ul>	| totem 	| A movie player for GNOME desktop 			 |
     
 - ## Install List ([install_software.sh](https://github.com/ksguin/Ubuntu-AIO_Debloat-SetUp/blob/master/Scripts/install_software.sh))
   The following apps will be available in options in _checklist_ to be _installed_, based on its Category.
@@ -125,4 +143,5 @@ Contributor Covenant [Code of Conduct](https://github.com/ksguin/Ubuntu-AIO_Debl
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
 
