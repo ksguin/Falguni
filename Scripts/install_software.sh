@@ -89,15 +89,16 @@ else
 		FALSE 		Discord			"All-in-one voice and text chat for Gamers"\
 		TRUE 		'Google Chrome' 	"A cross-platform web browser by Google" );
 	
-	#this is mandatory for the space in the "Software(s)" column, e.g. 'Android Studio', also IFS unset later
-	IFS=:
-
+	
 	#column="2" is sent to output by default
 	if [[ $? -eq 0 && -z "$CNB"  ]]; then
 		zenity --warning\
 		--text "\nNo Option Selected. Nothing will be installed!"\
 		2>/dev/null --no-wrap
 	else 
+		#this is mandatory for the space in the "Software(s)" column, e.g. 'Android Studio', also IFS unset later
+		IFS=:
+
 		for option in $(echo $CNB | tr "|" "\n"); do
 
 			case $option in
@@ -165,9 +166,6 @@ else
 		--column "Pick" --column "Software(s)" 	--column "Description"\
 		FALSE 		'Android Studio'	"Android Studio IDE for Android"\
 		TRUE 		Stacer 			"Linux System Optimizer & Monitoring" );
-	
-	#this is mandatory for the space in the "Software(s)" column, e.g. 'Android Studio', also IFS unset later
-	IFS=:
 
 	#column="2" is sent to output by default
 	if [[ $? -eq 0 && -z "$UTIL"  ]]; then
@@ -175,6 +173,9 @@ else
 		--text "\nNo Option Selected. Nothing will be installed!"\
 		2>/dev/null --no-wrap
 	else 
+		#this is mandatory for the space in the "Software(s)" column, e.g. 'Android Studio', also IFS unset later
+		IFS=:
+
 		for option in $(echo $UTIL | tr "|" "\n"); do
 
 			case $option in
