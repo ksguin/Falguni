@@ -21,38 +21,40 @@ No need to install! Download the zip, extract, and you're good to go!
   The following fonts will be available in options in _checklist_ to be _removed_.  
   I have pre-ticked most of them to remove _(you may change it for sure)_, mind you, the necessary system fonts for various languages are untouched for stability!
   
-    - [X] fonts-arabeyes
-    - [X] fonts-arphic-*
-    - [X] fonts-beng*
-    - [X] fonts-droid-fallback
-	- [X] fonts-gargi
-    - [X] fonts-gubbi
-    - [X] fonts-gujr*
-	- [X] fonts-guru*
-	- [X] fonts-kacst*
-	- [X] fonts-kalapi
-	- [X] fonts-khmeros-core
-	- [X] fonts-lao
-	- [X] fonts-lklug-sinhala
-	- [X] fonts-lohit-*
-	- [X] fonts-nakula
-	- [X] fonts-nanum
-	- [X] fonts-navilu
-	- [X] fonts-noto-cjk
-	- [X] fonts-orya-extra
-	- [X] fonts-pagul
-	- [X] fonts-sahadeva
-	- [X] fonts-samyak-*
-	- [X] fonts-sarai
-	- [X] fonts-sil-abyssinica
-	- [X] fonts-sil-padauk
-	- [X] fonts-smc
-	- [X] fonts-takao-pgothic
-	- [X] fonts-telu-extra
-	- [X] fonts-tibetan-machine
-	- [X] fonts-tlwg-*
-	- [X] fonts-wqy-microhei
-  
+    | Status			| Font	 		| Description 				 	|
+    | :---: 			| :------		| -------------------------------------- 	|
+    | <ul><li> [x] </li></ul>	| fonts-arabeyes 	| A set of TrueType Arabic fonts	 	|
+    | <ul><li> [x] </li></ul>	| fonts-arphic-* 	| Sets of Chinese Unicode/TrueType font	 	|
+    | <ul><li> [x] </li></ul>	| fonts-beng* 		| Metapackage of Bengali and Assamese fonts 	|
+    | <ul><li> [x] </li></ul>	| fonts-droid-fallback 	| Handheld device font with extensive support (fallback) |
+    | <ul><li> [x] </li></ul>	| fonts-gargi 		| OpenType Devanagari font		 	|
+    | <ul><li> [x] </li></ul>	| fonts-gubbi 		| Gubbi free font for Kannada script	 	|
+    | <ul><li> [x] </li></ul>	| fonts-gujr* 		| Metapackage of all Gujarati fonts	 	|
+    | <ul><li> [x] </li></ul>	| fonts-guru* 		| Metapackage of all Punjabi fonts	 	|
+    | <ul><li> [x] </li></ul>	| fonts-kacst* 		| KACST free TrueType Arabic fonts	 	|
+    | <ul><li> [x] </li></ul>	| fonts-kalapi 		| Kalapi Gujarati Unicode font		 	|
+    | <ul><li> [x] </li></ul>	| fonts-khmeros-core 	| Unicode fonts for the Khmer language of Cambodia |
+    | <ul><li> [x] </li></ul>	| fonts-lao 		| TrueType font for Lao language	 	|
+    | <ul><li> [x] </li></ul>	| fonts-lklug-sinhala 	| Unicode Sinhala font by LKLUG		 	|
+    | <ul><li> [x] </li></ul>	| fonts-lohit-* 	| Sets of Lohit TrueType Indic fonts	 	|
+    | <ul><li> [x] </li></ul>	| fonts-nakula 		| Free Unicode compliant Devanagari font 	|
+    | <ul><li> [x] </li></ul>	| fonts-nanum 		| Nanum Korean fonts			 	|
+    | <ul><li> [x] </li></ul>	| fonts-navilu 		| Handwriting font for Kannada		 	|
+    | <ul><li> [x] </li></ul>	| fonts-noto-cjk 	| No Tofu font families with large Unicode coverage |
+    | <ul><li> [x] </li></ul>	| fonts-orya-extra 	| Free fonts for Odia script		 	|
+    | <ul><li> [x] </li></ul>	| fonts-pagul 		| Free TrueType font for the Sourashtra language |
+    | <ul><li> [x] </li></ul>	| fonts-sahadeva 	| Free Unicode compliant Devanagari font 	|
+    | <ul><li> [x] </li></ul>	| fonts-samyak-* 	| Metapackage of all Samyak TrueType fonts 	|
+    | <ul><li> [x] </li></ul>	| fonts-sarai 		| TrueType font for Devanagari script	 	|
+    | <ul><li> [x] </li></ul>	| fonts-sil-abyssinica 	| Unicode font for Ethiopic script	 	|
+    | <ul><li> [x] </li></ul>	| fonts-sil-padauk 	| Burmese Unicode TrueType font		 	|
+    | <ul><li> [x] </li></ul>	| fonts-smc 		| Metapackage of TrueType fonts for Malayalam Language |
+    | <ul><li> [x] </li></ul>	| fonts-takao-pgothic 	| Japanese gothic and mincho scalable fonts 	|
+    | <ul><li> [x] </li></ul>	| fonts-telu-extra 	| Free fonts for Telugu script		 	|
+    | <ul><li> [x] </li></ul>	| fonts-tibetan-machine | Font for Tibetan, Dzongkha and Ladakhi 	|
+    | <ul><li> [x] </li></ul>	| fonts-tlwg-* 		| Set of all Thai fonts for LaTeX from TLWG	|
+    | <ul><li> [x] </li></ul>	| fonts-wqy-microhei 	| Sans-serif style CJK font derived from Droid 	|
+    
 - ## Debloat List ([delete_bloat.sh](https://github.com/ksguin/Ubuntu-AIO_Debloat-SetUp/blob/master/Scripts/delete_bloat.sh))
   The following apps will be available in options in _checklist_ to be _removed_, along with its configuration files & dependencies.  
   I have pre-ticked most of them to remove _(you may change it for sure)_, leaving a bare minimum apps required for viewing photos/utility.
@@ -143,5 +145,6 @@ Contributor Covenant [Code of Conduct](https://github.com/ksguin/Ubuntu-AIO_Debl
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
 
 
