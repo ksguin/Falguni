@@ -20,7 +20,7 @@ else
 	SEL=$( zenity --list --multiple\
 				--text "The following fonts will be removed" 2>/dev/null\
 				--checklist --height=480 --width=720 --ok-label "Remove"\
-				--cancel-label "Exit"\
+				--cancel-label "Skip"\
 				--column "Pick" --column "Fonts" --column "Description"\
 				TRUE 	fonts-arabeyes		"A set of TrueType Arabic fonts"\
 				TRUE 	fonts-arphic-*		"Sets of Chinese Unicode/TrueType font"\
@@ -68,8 +68,12 @@ else
 		(
 			for i in $(echo $SEL | tr "|" "\n") ;
 			do 
-				echo -e "#Removing $i";
-				sudo apt-get autoremove --purge -y $i
+				( sudo apt-get autoremove --purge -y $i 2>/dev/null | \
+						tee >(xargs -I % echo "#%")) | \
+						zenity --progress --width=720 --pulsate \
+						--title "Removing $i"\
+						--no-cancel --auto-kill --auto-close 2>/dev/null
+
 				# For Droid Fonts:
 				if [[ $i =~ "fonts-droid_fallback" ]]; then
     					cd /usr/share/fonts/truetype/droid/
