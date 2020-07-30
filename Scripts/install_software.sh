@@ -97,7 +97,7 @@ else
 		2>/dev/null --no-wrap
 	else 
 		#this is mandatory for the space in the "Software(s)" column, e.g. 'Android Studio', also IFS unset later
-		IFS=:
+		IFS=$'\n'
 
 		for option in $(echo $CNB | tr "|" "\n"); do
 
@@ -174,7 +174,7 @@ else
 		2>/dev/null --no-wrap
 	else 
 		#this is mandatory for the space in the "Software(s)" column, e.g. 'Android Studio', also IFS unset later
-		IFS=:
+		IFS=$'\n'
 
 		for option in $(echo $UTIL | tr "|" "\n"); do
 
