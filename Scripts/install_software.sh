@@ -236,4 +236,10 @@ else
 	fi
 	unset IFS
 #-------------------- UTILITIES end -------------------#
+
+	if [[ ! -z $AAV || ! -z $CNB || ! -z $UTIL ]]; then
+		#notify-send cannot work as root
+		USER=$(cat /etc/passwd|grep 1000|sed "s/:.*$//g");
+		su $USER -c "/usr/bin/notify-send -u normal 'Complete' 'Softwares Installed'"
+	fi
 fi
