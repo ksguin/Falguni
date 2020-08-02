@@ -32,12 +32,23 @@ if [[ $EUID -ne 0 ]]; then
 	notify-send -u normal "ERROR" "Re-run "$(basename "$0")""
    	exit 1
 else
+	## Dual Boot Time Fix ##
+	zenity --question --title=""\
+	--text "\nAre you running Dual Boot with Windows? Apply Dual Boot Time Fix?" --no-wrap\
+	2>/dev/null
+	if [[ $? -eq 0 ]]; then
+		sudo timedatectl set-local-rtc 1 --adjust-system-clock
+	else
+		sudo timedatectl set-local-rtc 0 --adjust-system-clock
+	fi
+
 	#Zenity Checklist for all the scripts
 	SEL=$( zenity --list --checklist\
 		2>/dev/null --height=480 --width=720\
 		--text="Don't worry! You will get sub-choices for each selection."\
 		--ok-label "Start" --cancel-label "Exit"\
 		--column "Pick" --column "Operation" 	--column "Description"\
+		TRUE		LANGUAGE		"Tweaks Language Settings"\
 		TRUE 		FONT			"Deletes Unnecessary Fonts"\
 		TRUE 		BLOATWARE 		"Deletes Pre-installed Softwares"\
 		TRUE		INSTALL			"Installs Your Preferred Softwares" );
@@ -55,6 +66,16 @@ else
 		for option in $(echo $SEL | tr "|" "\n"); do
 
 			case $option in
+
+			"LANGUAGE")	#Language setup script
+				if find ./Scripts/delete_language.sh -quit;	then
+					source ./Scripts/delete_language.sh
+				else
+					zenity --error --title="File Not Found"\
+						2>/dev/null --no-wrap\
+						--text="\nCannot locate File!"
+				fi
+				;;
 
 			"FONT")		#Font deletion script
 				if find ./Scripts/delete_font.sh -quit;	then
@@ -88,5 +109,11 @@ else
 			esac
 		done	
 		
+	fi
+
+	if [[ ! -z $SEL ]]; then
+		#notify-send cannot work as root
+		USER=$(cat /etc/passwd|grep 1000|sed "s/:.*$//g");
+		su $USER -c "/usr/bin/notify-send -u normal 'Complete' 'Enjoy your system!'"
 	fi
 fi
