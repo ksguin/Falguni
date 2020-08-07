@@ -17,6 +17,21 @@ No need to install! Download the zip, extract, and you're good to go!
   ***Note:** You can run individual scripts too from [Scripts](https://github.com/ksguin/Ubuntu-AIO_Debloat-SetUp/tree/master/Scripts) folder, however [run.sh](https://github.com/ksguin/Ubuntu-AIO_Debloat-SetUp/blob/master/run.sh) provides you the same choices, so it is recommended to proceed as mentioned above!*
   
 # Features
+- ## Additional Tweaks & Settings
+  | Status			        | Setting 		        | Description 				 	                                    |
+  | :---: 			        | :------		        | -------------------------------------- 	                        |
+  | <ul><li> [x] </li></ul>	| Dual-Boot Time Fix   	| Sync time on both OS when running Dual Boot with Windows          |
+
+- ## Language Settings ([delete_language.sh](https://github.com/ksguin/Ubuntu-AIO_Debloat-SetUp/blob/master/Scripts/delete_language.sh))
+  The following tweaks will be available in options in _checklist_.
+  I have pre-ticked most of them, which I think, should be useful for you! You surely have the full control though!
+  
+  | Status			        | Language 		        | Description 				 	                                    |
+  | :---: 			        | :------		        | -------------------------------------- 	                        |
+  | <ul><li> [x] </li></ul>	| Language Settings	    | Uninstall unused languages + set Regional format                  |
+  | <ul><li> [x] </li></ul>	| Language Translations | Stop Getting and Remove Language Translations from apt entries    |
+  | <ul><li> [x] </li></ul>	| ibus-libpinyin     	| Chinese Pinyin input method for IBus	 	                        |
+
 - ## Font List ([delete_font.sh](https://github.com/ksguin/Ubuntu-AIO_Debloat-SetUp/blob/master/Scripts/delete_font.sh))
   The following fonts will be available in options in _checklist_ to be _removed_.  
   I have pre-ticked most of them to remove _(you may change it for sure)_, mind you, the necessary system fonts for various languages are untouched for stability!
@@ -145,6 +160,7 @@ Contributor Covenant [Code of Conduct](https://github.com/ksguin/Ubuntu-AIO_Debl
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
 
 
 
