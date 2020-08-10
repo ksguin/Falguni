@@ -41,7 +41,8 @@ else
 		TRUE		LANGUAGE		"Tweaks Language Settings"\
 		TRUE 		FONT			"Deletes Unnecessary Fonts"\
 		TRUE 		BLOATWARE 		"Deletes Pre-installed Softwares"\
-		TRUE		INSTALL			"Installs Your Preferred Softwares" );
+		TRUE		INSTALL			"Installs Your Preferred Softwares"\
+		FALSE		"ADDITIONAL TWEAKS"	"Some Additional System Settings" );
 
 	# pressed Cancel or closed the dialog window 
 	if [[ $? -eq 1 ]]; then 
@@ -53,6 +54,9 @@ else
 		--text "\nNo Option Selected. Nothing will be done!"\
 		2>/dev/null --no-wrap
 	else
+		#this is mandatory for the space in checklist to work eg. "ADDITIONAL TWEAKS"
+		IFS=$'\n'
+
 		for option in $(echo $SEL | tr "|" "\n"); do
 
 			case $option in
@@ -96,10 +100,21 @@ else
 						--text="\nCannot locate File!"
 				fi
 				;;
+
+			"ADDITIONAL TWEAKS") 	#Additonal Settings Script
+				if find ./Scripts/additional_tweaks.sh -quit; then
+					source ./Scripts/additional_tweaks.sh
+				else
+					zenity --error --title="File Not Found"\
+						2>/dev/null --no-wrap\
+						--text="\nCannot locate File!"
+				fi
+				;;
 			esac
 		done	
 		
 	fi
+	unset IFS
 
 	if [[ ! -z $SEL ]]; then
 		#notify-send cannot work as root
