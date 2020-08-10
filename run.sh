@@ -32,16 +32,6 @@ if [[ $EUID -ne 0 ]]; then
 	notify-send -u normal "ERROR" "Re-run "$(basename "$0")""
    	exit 1
 else
-	## Dual Boot Time Fix ##
-	zenity --question --title=""\
-	--text "\nAre you running Dual Boot with Windows? Apply Dual Boot Time Fix?" --no-wrap\
-	2>/dev/null
-	if [[ $? -eq 0 ]]; then
-		sudo timedatectl set-local-rtc 1 --adjust-system-clock
-	else
-		sudo timedatectl set-local-rtc 0 --adjust-system-clock
-	fi
-
 	#Zenity Checklist for all the scripts
 	SEL=$( zenity --list --checklist\
 		2>/dev/null --height=480 --width=720\
