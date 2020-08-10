@@ -136,24 +136,24 @@ No need to install! Download the zip, extract, and you're good to go!
   
   * ### Audio & Video
         
-    | Status			| Software 	| Description 		|
-    | :---: 			| :------	| --------------------- |
-    | <ul><li> [ ] </li></ul>	| Spotify 	| Spotify Music Player  |
-    | <ul><li> [x] </li></ul>	| VLC 		| VLC Media Player 	|
+    | Status			        | Software 	                                | Description 		|
+    | :---: 			        | :------	                                | --------------------- |
+    | <ul><li> [ ] </li></ul>	| [Spotify](https://www.spotify.com/) 	    | Spotify Music Player  |
+    | <ul><li> [x] </li></ul>	| [VLC](https://www.videolan.org/vlc/) 		| VLC Media Player 	|
     
   * ### Communication & Browsers
         
-    | Status			| Software 	| Description 				     |
-    | :---: 			| :------ 	| ------------------------------------------ |
-    | <ul><li> [ ] </li></ul>	| Discord 	| All-in-one voice and text chat for Gamers  |
-    | <ul><li> [x] </li></ul>	| Google Chrome	| A cross-platform web browser by Google     |
+    | Status			        | Software 	                                        | Description 				     |
+    | :---: 			        | :------ 	                                        | ------------------------------------------ |
+    | <ul><li> [ ] </li></ul>	| [Discord](https://discord.com/)        	        | All-in-one voice and text chat for Gamers  |
+    | <ul><li> [x] </li></ul>	| [Google Chrome](https://www.google.com/chrome/)	| A cross-platform web browser by Google     |
     
   * ### Utilities
     
-    | Status			| Software 	 | Description 				      |
-    | :---: 			| :------ 	 | ------------------------------------------ |
-    | <ul><li> [ ] </li></ul>	| Android Studio | Android Studio IDE for Android	      |
-    | <ul><li> [x] </li></ul>	| Stacer	 | Linux System Optimizer & Monitoring	      |
+    | Status			        | Software 	                                             | Description 				                  |
+    | :---: 			        | :------ 	                                             | ------------------------------------------ |
+    | <ul><li> [ ] </li></ul>	| [Android Studio](https://developer.android.com/studio) | Android Studio IDE for Android	          |
+    | <ul><li> [x] </li></ul>	| [Stacer](https://oguzhaninan.github.io/Stacer-Web/)	 | Linux System Optimizer & Monitoring	      |
 
 ## Contributing
 Thanks for your interest in contributing! There are many ways to contribute to this project. Get started [here](https://github.com/ksguin/Ubuntu-AIO_Debloat-SetUp/blob/master/Documentation/CONTRIBUTING.md).
