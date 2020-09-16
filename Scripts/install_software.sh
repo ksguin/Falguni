@@ -165,6 +165,7 @@ else
 		--ok-label "Install" --cancel-label "Skip"\
 		--column "Pick" --column "Software(s)" 	--column "Description"\
 		FALSE 		'Android Studio'	"Android Studio IDE for Android"\
+		TRUE		'Git'			"A Fast, Scalable, Distributed Free & Open-Source VCS"\
 		TRUE 		Stacer 			"Linux System Optimizer & Monitoring" );
 
 	#column="2" is sent to output by default
@@ -197,6 +198,48 @@ else
 						zenity --info --timeout 5\
 						--text="\nInstallation Complete\t\t"\
 						--title "Android Studio" --no-wrap 2>/dev/null
+					fi
+				;;
+
+			"Git")				#A fast, scalable, distributed free & open-source VCS
+					#if already present, don't install
+					if [[ $(which git | grep -w "git" | awk {'print $0'}) ]]; then
+						zenity --info --timeout 5\
+						--text="\nGit Already Installed\t\t"\
+						--title "Installed" --no-wrap 2>/dev/null
+					else
+						#Installing Git
+						(sudo apt-get -y install git 2>/dev/null | \
+						tee >(xargs -I % echo "#%")) | \
+						zenity --progress --width=720 --pulsate \
+						--no-cancel --auto-kill --auto-close 2>/dev/null
+
+						#Setup Git name & email? (if installed)
+						if [[ $(which git | grep -w "git" | awk {'print $0'}) ]]; then
+							zenity --question --title="Git Setup" \
+							--text="\nDo you want to Setup Git Name &amp; Email right now?" --width=720 --no-wrap \
+							2>/dev/null
+							#If Yes, setup
+							if [[ $? -eq 0 ]]; then
+								#git username
+								username=$(zenity --entry --title="Git Setup" --text="Enter Git Username" --width=480 2>/dev/null)
+								#if $username isn't blank, execute command
+								if [[ ! -z "$username" ]]; then
+									git config --global user.name "\"$username\""
+								fi
+								#git useremail
+								useremail=$(zenity --entry --title="Git Setup" --text="Enter Git Email" --width=480 2>/dev/null)
+								#if $useremail isn't blank, execute command
+								if [[ ! -z "$useremail" ]]; then
+									git config --global user.email "\"$useremail\""
+								fi
+							fi
+						fi
+
+						#Installation Complete Dialog
+						zenity --info --timeout 5\
+						--text="\nInstallation Complete\t\t"\
+						--title "Git" --no-wrap 2>/dev/null
 					fi
 				;;
 
