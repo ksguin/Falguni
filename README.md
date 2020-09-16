@@ -153,6 +153,7 @@ No need to install! Download the zip, extract, and you're good to go!
     | Status			        | Software 	                                             | Description 				                  |
     | :---: 			        | :------ 	                                             | ------------------------------------------ |
     | <ul><li> [ ] </li></ul>	| [Android Studio](https://developer.android.com/studio) | Android Studio IDE for Android	          |
+    | <ul><li> [x] </li></ul>   | [Git](https://git-scm.com/)                            | A Fast, Scalable, Distributed Free & Open-Source VCS |
     | <ul><li> [x] </li></ul>	| [Stacer](https://oguzhaninan.github.io/Stacer-Web/)	 | Linux System Optimizer & Monitoring	      |
 
 ## Contributing
@@ -163,6 +164,7 @@ Contributor Covenant [Code of Conduct](https://github.com/ksguin/Ubuntu-AIO_Debl
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
 
 
 
