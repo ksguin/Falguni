@@ -87,7 +87,8 @@ else
 		--ok-label "Install" --cancel-label "Skip"\
 		--column "Pick" --column "Software(s)" 	--column "Description"\
 		FALSE 		Discord			"All-in-one voice and text chat for Gamers"\
-		TRUE 		'Google Chrome' 	"A cross-platform web browser by Google" );
+		TRUE 		'Google Chrome' 	"A cross-platform web browser by Google"\
+		FALSE		'Telegram Desktop'	"Official Desktop Client for the Telegram Messenger" );
 	
 	
 	#column="2" is sent to output by default
@@ -149,6 +150,26 @@ else
 						zenity --info --timeout 5\
 						--text="\nInstallation Complete\t\t"\
 						--title "Google Chrome" --no-wrap 2>/dev/null
+					fi
+				;;
+
+			"Telegram Desktop")		#Official Desktop Client for the Telegram Messenger
+					#if already present, don't install
+					if [[ "telegram-desktop" == $(snap list | awk {'print $1'} | grep 'telegram-desktop') ]]; then
+						zenity --info --timeout 5\
+						--text="\nTelegram Desktop Already Installed\t\t"\
+						--title "Installed" --no-wrap 2>/dev/null
+					else
+						sudo snap install telegram-desktop 2>&1 | \
+						tee >( \
+						zenity --progress --pulsate --width=720\
+						--text="Downloading Telegram Desktop..." --auto-kill --auto-close --no-cancel\
+						2>/dev/null)
+				
+						#Installation Complete Dialog
+						zenity --info --timeout 5\
+						--text="\nInstallation Complete\t\t"\
+						--title "Telegram Desktop" --no-wrap 2>/dev/null
 					fi
 				;;
 			esac
