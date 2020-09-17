@@ -166,7 +166,8 @@ else
 		--column "Pick" --column "Software(s)" 	--column "Description"\
 		FALSE 		'Android Studio'	"Android Studio IDE for Android"\
 		TRUE		'Git'			"A Fast, Scalable, Distributed Free & Open-Source VCS"\
-		TRUE 		Stacer 			"Linux System Optimizer & Monitoring" );
+		TRUE 		Stacer 			"Linux System Optimizer & Monitoring"\
+		FALSE		'Visual Studio Code'	"A Free Source-Code Editor made by Microsoft (vscode)" );
 
 	#column="2" is sent to output by default
 	if [[ $? -eq 0 && -z "$UTIL"  ]]; then
@@ -272,6 +273,26 @@ else
 						zenity --info --timeout 5\
 						--text="\nInstallation Complete\t\t"\
 						--title "Stacer" --no-wrap 2>/dev/null
+					fi
+				;;
+
+			"Visual Studio Code")		#A Free Source-Code Editor made by Microsoft (vscode)
+					#if already present, don't install
+					if [[ "code" == $(snap list | awk {'print $1'} | grep 'code') ]]; then
+						zenity --info --timeout 5\
+						--text="\nVisual Studio Code Already Installed\t\t"\
+						--title "Installed" --no-wrap 2>/dev/null
+					else
+						sudo snap install code --classic 2>&1 | \
+						tee >( \
+						zenity --progress --pulsate --width=720\
+						--text="Downloading Visual Studio Code..." --auto-kill --auto-close --no-cancel\
+						2>/dev/null)
+				
+						#Installation Complete Dialog
+						zenity --info --timeout 5\
+						--text="\nInstallation Complete\t\t"\
+						--title "Visual Studio Code" --no-wrap 2>/dev/null
 					fi
 				;;
 			esac
