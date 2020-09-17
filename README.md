@@ -1,7 +1,7 @@
 # [Ubuntu](https://ubuntu.com/) ([GNOME](https://www.gnome.org/gnome-3/)) All-in-One Debloat + Set-Up
 A must-have GUI-based shell-script for a clean, hassle-free setup for [Ubuntu](https://ubuntu.com/) and Ubuntu-based distros, especially handy if you're new to Linux.
 
-***Disclaimer:** Tested on [Zorin OS 15.2](https://zorinos.com/) (based on Ubuntu 18.04.2 LTS)*
+***Disclaimer:** Tested on [Zorin OS 15.3](https://zorinos.com/) (based on Ubuntu 18.04.5 LTS)*
 
 # Installation
 No need to install! Download the zip, extract, and you're good to go!
