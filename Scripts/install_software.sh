@@ -22,6 +22,7 @@ else
 		--text="The following Software(s) will be Installed"\
 		--ok-label "Install" --cancel-label "Skip"\
 		--column "Pick" --column "Software(s)" 	--column "Description"\
+		FALSE		Kdenlive		"Free, Open-source, Non-Linear Video Editor by KDE"\
 		FALSE 		Spotify			"Spotify Music Player"\
 		TRUE 		VLC 			"VLC Media Player" );
 	
@@ -30,10 +31,45 @@ else
 		zenity --warning\
 		--text "\nNo Option Selected. Nothing will be installed!"\
 		2>/dev/null --no-wrap
-	else 
+	else
+		#this is mandatory for the space in the names in "Software(s)" column, also IFS unset later
+		IFS=$'\n'
+
 		for option in $(echo $AAV | tr "|" "\n"); do
 
 			case $option in
+
+			"Kdenlive")			#Free, Open-source, Non-Linear Video Editor by KDE
+					#if already present, don't install
+					if [[ $(which kdenlive | grep -w "kdenlive" | awk {'print $0'}) ]]; then
+						zenity --info --timeout 5\
+						--text="\nKdenlive Already Installed\t\t"\
+						--title "Installed" --no-wrap 2>/dev/null
+					else
+						#Adding ppa for Kdenlive
+						(sudo add-apt-repository -y ppa:kdenlive/kdenlive-stable 2>/dev/null | \
+						tee >(xargs -I % echo "#%")) | \
+						zenity --progress --width=720 --pulsate \
+						--no-cancel --auto-kill --auto-close 2>/dev/null
+						
+						#Refreshing apt-get
+						(sudo apt-get update 2>/dev/null | \
+						tee >(xargs -I % echo "#%")) | \
+						zenity --progress --width=720 --pulsate \
+						--no-cancel --auto-kill --auto-close 2>/dev/null
+
+						#Installing Kdenlive
+						(sudo apt-get -y install kdenlive 2>/dev/null | \
+						tee >(xargs -I % echo "#%")) | \
+						zenity --progress --width=720 --pulsate \
+						--no-cancel --auto-kill --auto-close 2>/dev/null
+
+						#Installation Complete Dialog
+						zenity --info --timeout 5\
+						--text="\nInstallation Complete\t\t"\
+						--title "Kdenlive" --no-wrap 2>/dev/null
+					fi
+				;;
 
 			"Spotify")		#Spotify Music Player
 					#if already present, don't install
@@ -77,6 +113,7 @@ else
 			esac
 		done
 	fi
+	unset IFS
 #----------------- AUDIO & VIDEO end ------------------#
 
 #--------- COMMUNICATION & BROWSERS ----------#
