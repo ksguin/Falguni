@@ -136,10 +136,11 @@ No need to install! Download the zip, extract, and you're good to go!
   
   * ### Audio & Video
         
-    | Status			        | Software 	                                | Description 		|
+    | Status			        | Software 	                                | Description 		    |
     | :---: 			        | :------	                                | --------------------- |
+    | <ul><li> [ ] </li></ul>   | [Kdenlive](https://kdenlive.org/en/)      | Free, Open-source, Non-Linear Video Editor by KDE |
     | <ul><li> [ ] </li></ul>	| [Spotify](https://www.spotify.com/) 	    | Spotify Music Player  |
-    | <ul><li> [x] </li></ul>	| [VLC](https://www.videolan.org/vlc/) 		| VLC Media Player 	|
+    | <ul><li> [x] </li></ul>	| [VLC](https://www.videolan.org/vlc/) 		| VLC Media Player 	    |
     
   * ### Communication & Browsers
         
@@ -166,11 +167,3 @@ Contributor Covenant [Code of Conduct](https://github.com/ksguin/Ubuntu-AIO_Debl
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
-
-
-
-
-
-
-
-
