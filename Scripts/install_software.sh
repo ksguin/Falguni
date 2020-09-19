@@ -72,43 +72,21 @@ else
 				;;
 
 			"Spotify")		#Spotify Music Player
-					#if already present, don't install
-					if [[ "spotify" == $(snap list | awk {'print $1'} | grep 'spotify') ]]; then
-						zenity --info --timeout 5\
-						--text="\nSpotify Already Installed\t\t"\
-						--title "Installed" --no-wrap 2>/dev/null
-					else
-						sudo snap install spotify 2>&1 | \
-						tee >( \
-						zenity --progress --pulsate --width=720\
-						--text="Downloading Spotify..." --auto-kill --auto-close --no-cancel\
-						2>/dev/null)
-				
-						#Installation Complete Dialog
-						zenity --info --timeout 5\
-						--text="\nInstallation Complete\t\t"\
-						--title "Spotify" --no-wrap 2>/dev/null
-					fi
+			
+					mydir="$(dirname \"${0}\")"
+					source "${mydir}"/Scripts/Function/SNAP_INSTALL.sh
+					
+					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
+					SNAP_INSTALL "spotify" "Spotify" "spotify"
 				;;
 
 			"VLC")			#VLC Media Player
-					#if already present, don't install
-					if [[ "vlc" == $(snap list | awk {'print $1'} | grep 'vlc') ]]; then
-						zenity --info --timeout 5\
-						--text="\nVLC Already Installed\t\t"\
-						--title "Installed" --no-wrap 2>/dev/null
-					else
-						sudo snap install vlc 2>&1 | \
-						tee >( \
-						zenity --progress --pulsate --width=720\
-						--text="Downloading VLC..." --auto-kill --auto-close --no-cancel\
-						2>/dev/null)
-				
-						#Installation Complete Dialog
-						zenity --info --timeout 5\
-						--text="\nInstallation Complete\t\t"\
-						--title "VLC" --no-wrap 2>/dev/null
-					fi
+			
+					mydir="$(dirname \"${0}\")"
+					source "${mydir}"/Scripts/Function/SNAP_INSTALL.sh
+					
+					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
+					SNAP_INSTALL "vlc" "VLC" "vlc"
 				;;
 			esac
 		done
@@ -141,24 +119,13 @@ else
 
 			case $option in
 
-			"Discord")		#Discord
-					#if already present, don't install
-					if [[ "discord" == $(snap list | awk {'print $1'} | grep 'discord') ]]; then
-						zenity --info --timeout 5\
-						--text="\nDiscord Already Installed\t\t"\
-						--title "Installed" --no-wrap 2>/dev/null
-					else
-						sudo snap install discord 2>&1 | \
-						tee >( \
-						zenity --progress --pulsate --width=720\
-						--text="Downloading Discord..." --auto-kill --auto-close --no-cancel\
-						2>/dev/null)
-				
-						#Installation Complete Dialog
-						zenity --info --timeout 5\
-						--text="\nInstallation Complete\t\t"\
-						--title "Discord" --no-wrap 2>/dev/null
-					fi
+			"Discord")				#Discord
+						
+					mydir="$(dirname \"${0}\")"
+					source "${mydir}"/Scripts/Function/SNAP_INSTALL.sh
+					
+					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
+					SNAP_INSTALL "discord" "Discord" "discord"
 				;;
 
 			"Google Chrome")			#Google Chrome web browser
@@ -191,23 +158,12 @@ else
 				;;
 
 			"Telegram Desktop")		#Official Desktop Client for the Telegram Messenger
-					#if already present, don't install
-					if [[ "telegram-desktop" == $(snap list | awk {'print $1'} | grep 'telegram-desktop') ]]; then
-						zenity --info --timeout 5\
-						--text="\nTelegram Desktop Already Installed\t\t"\
-						--title "Installed" --no-wrap 2>/dev/null
-					else
-						sudo snap install telegram-desktop 2>&1 | \
-						tee >( \
-						zenity --progress --pulsate --width=720\
-						--text="Downloading Telegram Desktop..." --auto-kill --auto-close --no-cancel\
-						2>/dev/null)
-				
-						#Installation Complete Dialog
-						zenity --info --timeout 5\
-						--text="\nInstallation Complete\t\t"\
-						--title "Telegram Desktop" --no-wrap 2>/dev/null
-					fi
+						
+					mydir="$(dirname \"${0}\")"
+					source "${mydir}"/Scripts/Function/SNAP_INSTALL.sh
+					
+					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
+					SNAP_INSTALL "telegram-desktop" "Telegram Desktop" "telegram-desktop"
 				;;
 			esac
 		done
@@ -241,23 +197,13 @@ else
 			case $option in
 
 			"Android Studio")		#Android Studio IDE
-					#if already present, don't install
-					if [[ "android-studio" == $(snap list | awk {'print $1'} | grep 'android-studio') ]]; then
-						zenity --info --timeout 5\
-						--text="\nAndroid Studio Already Installed\t\t"\
-						--title "Installed" --no-wrap 2>/dev/null
-					else
-						sudo snap install android-studio --classic 2>&1 | \
-						tee >( \
-						zenity --progress --pulsate --width=720\
-						--text="Downloading Android Studio..." --auto-kill --auto-close --no-cancel\
-						2>/dev/null)
-				
-						#Installation Complete Dialog
-						zenity --info --timeout 5\
-						--text="\nInstallation Complete\t\t"\
-						--title "Android Studio" --no-wrap 2>/dev/null
-					fi
+					
+					mydir="$(dirname \"${0}\")"
+					source "${mydir}"/Scripts/Function/SNAP_INSTALL.sh
+					
+					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
+					SNAP_INSTALL "android-studio --classic" "Android Studio" "android-studio"
+						
 				;;
 
 			"Git")				#A fast, scalable, distributed free & open-source VCS
@@ -335,23 +281,12 @@ else
 				;;
 
 			"Visual Studio Code")		#A Free Source-Code Editor made by Microsoft (vscode)
-					#if already present, don't install
-					if [[ "code" == $(snap list | awk {'print $1'} | grep 'code') ]]; then
-						zenity --info --timeout 5\
-						--text="\nVisual Studio Code Already Installed\t\t"\
-						--title "Installed" --no-wrap 2>/dev/null
-					else
-						sudo snap install code --classic 2>&1 | \
-						tee >( \
-						zenity --progress --pulsate --width=720\
-						--text="Downloading Visual Studio Code..." --auto-kill --auto-close --no-cancel\
-						2>/dev/null)
-				
-						#Installation Complete Dialog
-						zenity --info --timeout 5\
-						--text="\nInstallation Complete\t\t"\
-						--title "Visual Studio Code" --no-wrap 2>/dev/null
-					fi
+					
+					mydir="$(dirname \"${0}\")"
+					source "${mydir}"/Scripts/Function/SNAP_INSTALL.sh
+					
+					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
+					SNAP_INSTALL "code --classic" "Visual Studio Code" "code"
 				;;
 			esac
 		done
