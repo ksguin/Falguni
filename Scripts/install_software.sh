@@ -72,9 +72,8 @@ else
 				;;
 
 			"Spotify")		#Spotify Music Player
-			
-					mydir="$(dirname \"${0}\")"
-					source "${mydir}"/Scripts/Function/SNAP_INSTALL.sh
+
+					source "$(dirname \"${0}\")"/Scripts/Function/SNAP_INSTALL.sh
 					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "spotify" "Spotify" "spotify"
@@ -82,9 +81,8 @@ else
 
 			"VLC")			#VLC Media Player
 			
-					mydir="$(dirname \"${0}\")"
-					source "${mydir}"/Scripts/Function/SNAP_INSTALL.sh
-					
+					source "$(dirname \"${0}\")"/Scripts/Function/SNAP_INSTALL.sh
+
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "vlc" "VLC" "vlc"
 				;;
@@ -121,8 +119,7 @@ else
 
 			"Discord")				#Discord
 						
-					mydir="$(dirname \"${0}\")"
-					source "${mydir}"/Scripts/Function/SNAP_INSTALL.sh
+					source "$(dirname \"${0}\")"/Scripts/Function/SNAP_INSTALL.sh
 					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "discord" "Discord" "discord"
@@ -159,8 +156,7 @@ else
 
 			"Telegram Desktop")		#Official Desktop Client for the Telegram Messenger
 						
-					mydir="$(dirname \"${0}\")"
-					source "${mydir}"/Scripts/Function/SNAP_INSTALL.sh
+					source "$(dirname \"${0}\")"/Scripts/Function/SNAP_INSTALL.sh
 					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "telegram-desktop" "Telegram Desktop" "telegram-desktop"
@@ -198,8 +194,7 @@ else
 
 			"Android Studio")		#Android Studio IDE
 					
-					mydir="$(dirname \"${0}\")"
-					source "${mydir}"/Scripts/Function/SNAP_INSTALL.sh
+					source "$(dirname \"${0}\")"/Scripts/Function/SNAP_INSTALL.sh
 					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "android-studio --classic" "Android Studio" "android-studio"
@@ -282,8 +277,7 @@ else
 
 			"Visual Studio Code")		#A Free Source-Code Editor made by Microsoft (vscode)
 					
-					mydir="$(dirname \"${0}\")"
-					source "${mydir}"/Scripts/Function/SNAP_INSTALL.sh
+					source "$(dirname \"${0}\")"/Scripts/Function/SNAP_INSTALL.sh
 					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "code --classic" "Visual Studio Code" "code"
