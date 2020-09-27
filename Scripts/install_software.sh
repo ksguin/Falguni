@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#Inclusion of Essential Scripts
+source ./Scripts/Function/FIND_EXECUTE_SCRIPT.sh
+
+
 # check if zenity is installed, if not install it
 if [ "$(dpkg -l | awk '/zenity/ {print }'|wc -l)" -ge 1 ]; then
   	:
@@ -73,7 +77,7 @@ else
 
 			"Spotify")		#Spotify Music Player
 
-					source "$(dirname \"${0}\")"/Scripts/Function/SNAP_INSTALL.sh
+					FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
 					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "spotify" "Spotify" "spotify"
@@ -81,7 +85,7 @@ else
 
 			"VLC")			#VLC Media Player
 			
-					source "$(dirname \"${0}\")"/Scripts/Function/SNAP_INSTALL.sh
+					FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
 
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "vlc" "VLC" "vlc"
@@ -119,7 +123,7 @@ else
 
 			"Discord")				#Discord
 						
-					source "$(dirname \"${0}\")"/Scripts/Function/SNAP_INSTALL.sh
+					FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
 					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "discord" "Discord" "discord"
@@ -156,7 +160,7 @@ else
 
 			"Telegram Desktop")		#Official Desktop Client for the Telegram Messenger
 						
-					source "$(dirname \"${0}\")"/Scripts/Function/SNAP_INSTALL.sh
+					FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
 					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "telegram-desktop" "Telegram Desktop" "telegram-desktop"
@@ -194,7 +198,7 @@ else
 
 			"Android Studio")		#Android Studio IDE
 					
-					source "$(dirname \"${0}\")"/Scripts/Function/SNAP_INSTALL.sh
+					FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
 					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "android-studio --classic" "Android Studio" "android-studio"
@@ -277,7 +281,7 @@ else
 
 			"Visual Studio Code")		#A Free Source-Code Editor made by Microsoft (vscode)
 					
-					source "$(dirname \"${0}\")"/Scripts/Function/SNAP_INSTALL.sh
+					FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
 					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "code --classic" "Visual Studio Code" "code"

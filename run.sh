@@ -18,6 +18,10 @@ else
 	fi
 fi
 
+#Inclusion of Essential Scripts
+source ./Scripts/Function/FIND_EXECUTE_SCRIPT.sh
+
+
 # check if zenity is installed, if not install it
 if [ "$(dpkg -l | awk '/zenity/ {print }'|wc -l)" -ge 1 ]; then
   	:
@@ -62,53 +66,23 @@ else
 			case $option in
 
 			"LANGUAGE")	#Language setup script
-				if find ./Scripts/delete_language.sh -quit;	then
-					source ./Scripts/delete_language.sh
-				else
-					zenity --error --title="File Not Found"\
-						2>/dev/null --no-wrap\
-						--text="\nCannot locate File!"
-				fi
+					FIND_EXECUTE_SCRIPT /Scripts/ delete_language.sh
 				;;
 
 			"FONT")		#Font deletion script
-				if find ./Scripts/delete_font.sh -quit;	then
-					source ./Scripts/delete_font.sh
-				else
-					zenity --error --title="File Not Found"\
-						2>/dev/null --no-wrap\
-						--text="\nCannot locate File!"
-				fi
+					FIND_EXECUTE_SCRIPT /Scripts/ delete_font.sh
 				;;
 
 			"BLOATWARE")	#Bloatware deletion script
-				if find ./Scripts/delete_bloat.sh -quit; then
-					source ./Scripts/delete_bloat.sh
-				else
-					zenity --error --title="File Not Found"\
-						2>/dev/null --no-wrap\
-						--text="\nCannot locate File!"
-				fi
+					FIND_EXECUTE_SCRIPT /Scripts/ delete_bloat.sh
 				;;
 
 			"INSTALL")	#Software Installation script
-				if find ./Scripts/install_software.sh -quit; then
-					source ./Scripts/install_software.sh
-				else
-					zenity --error --title="File Not Found"\
-						2>/dev/null --no-wrap\
-						--text="\nCannot locate File!"
-				fi
+					FIND_EXECUTE_SCRIPT /Scripts/ install_software.sh
 				;;
 
 			"ADDITIONAL TWEAKS") 	#Additonal Settings Script
-				if find ./Scripts/additional_tweaks.sh -quit; then
-					source ./Scripts/additional_tweaks.sh
-				else
-					zenity --error --title="File Not Found"\
-						2>/dev/null --no-wrap\
-						--text="\nCannot locate File!"
-				fi
+					FIND_EXECUTE_SCRIPT /Scripts/ additional_tweaks.sh
 				;;
 			esac
 		done	
