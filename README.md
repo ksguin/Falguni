@@ -10,12 +10,11 @@ No need to install! Download the zip, extract, and you're good to go!
 - Extract the Downloaded Zip file & Navigate to the extracted directory.
 - Open [Ubuntu-AIO_Debloat-SetUp](https://github.com/ksguin/Ubuntu-AIO_Debloat-SetUp/archive/master.zip) folder, then *Right-click* in an empty space > *'Open in Terminal'*
     > Don't worry, you don't need to face Terminal apart from this command! ^_^
-- Run the following command -
+- Run the following command :wink:
 
   `sudo bash run.sh`
   
-  ***Note:** You can run individual scripts too from [Scripts](https://github.com/ksguin/Ubuntu-AIO_Debloat-SetUp/tree/master/Scripts) folder, however [run.sh](https://github.com/ksguin/Ubuntu-AIO_Debloat-SetUp/blob/master/run.sh) provides you the same choices, so it is recommended to proceed as mentioned above!*
-  
+ 
 # Features
 - ## Additional Tweaks & Settings ([additional_tweaks.sh](https://github.com/ksguin/Ubuntu-AIO_Debloat-SetUp/blob/master/Scripts/additional_tweaks.sh))
   The following tweaks & settings will be available in options in _checklist_.
@@ -167,3 +166,4 @@ Contributor Covenant [Code of Conduct](https://github.com/ksguin/Ubuntu-AIO_Debl
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
