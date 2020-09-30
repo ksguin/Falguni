@@ -1,35 +1,22 @@
 #!/bin/bash
 
+#Inclusion of Essential Scripts
+source ./Scripts/Function/FIND_EXECUTE_SCRIPT.sh
+FIND_EXECUTE_SCRIPT /Scripts/Function/ FUNC_IN_RAW_SCRIPT.sh
+
 if [[ $EUID -ne 0 ]]; then
 	echo "Run with sudo";
 	exit 0
 else
-	if [ -f .flagfile.txt ]; then
-		if [[ $(head -1 ".flagfile.txt" | grep -wl "DONE" ) ]] ; then	#error
-			:
-		else
-			rm .flagfile.txt
-			echo "DONE" > .flagfile.txt
-			sudo update-manager 2>/dev/null
-		fi
-	else
-		echo "DONE" > .flagfile.txt
-		sudo update-manager 2>/dev/null
-	fi
+	RUN_UPDATE_MANAGER_ONCE
 fi
 
-# check if zenity is installed, if not install it
-if [ "$(dpkg -l | awk '/zenity/ {print }'|wc -l)" -ge 1 ]; then
-  	:
-else
-  	sudo apt install zenity -y
-fi
+# check if zenity is installed
+CHECK_ZENITY_ELSE_INSTALL
 
 # run only if a superuser
 if [[ $EUID -ne 0 ]]; then
-	#every zenity command will have height=480 and width=720 for the sake of uniformity
-	zenity --error --icon-name=error --title="ROOT permission required!" --text="\nThis script requires ROOT permission. Run with sudo!" --no-wrap 2>/dev/null
-	notify-send -u normal "ERROR" "Re-run "$(basename "$0")""
+	IF_NOT_SUPERUSER $(basename "$0")
    	exit 1
 else
 	#Zenity Checklist for all the scripts
@@ -62,53 +49,23 @@ else
 			case $option in
 
 			"LANGUAGE")	#Language setup script
-				if find ./Scripts/delete_language.sh -quit;	then
-					source ./Scripts/delete_language.sh
-				else
-					zenity --error --title="File Not Found"\
-						2>/dev/null --no-wrap\
-						--text="\nCannot locate File!"
-				fi
+					FIND_EXECUTE_SCRIPT /Scripts/ delete_language.sh
 				;;
 
 			"FONT")		#Font deletion script
-				if find ./Scripts/delete_font.sh -quit;	then
-					source ./Scripts/delete_font.sh
-				else
-					zenity --error --title="File Not Found"\
-						2>/dev/null --no-wrap\
-						--text="\nCannot locate File!"
-				fi
+					FIND_EXECUTE_SCRIPT /Scripts/ delete_font.sh
 				;;
 
 			"BLOATWARE")	#Bloatware deletion script
-				if find ./Scripts/delete_bloat.sh -quit; then
-					source ./Scripts/delete_bloat.sh
-				else
-					zenity --error --title="File Not Found"\
-						2>/dev/null --no-wrap\
-						--text="\nCannot locate File!"
-				fi
+					FIND_EXECUTE_SCRIPT /Scripts/ delete_bloat.sh
 				;;
 
 			"INSTALL")	#Software Installation script
-				if find ./Scripts/install_software.sh -quit; then
-					source ./Scripts/install_software.sh
-				else
-					zenity --error --title="File Not Found"\
-						2>/dev/null --no-wrap\
-						--text="\nCannot locate File!"
-				fi
+					FIND_EXECUTE_SCRIPT /Scripts/ install_software.sh
 				;;
 
 			"ADDITIONAL TWEAKS") 	#Additonal Settings Script
-				if find ./Scripts/additional_tweaks.sh -quit; then
-					source ./Scripts/additional_tweaks.sh
-				else
-					zenity --error --title="File Not Found"\
-						2>/dev/null --no-wrap\
-						--text="\nCannot locate File!"
-				fi
+					FIND_EXECUTE_SCRIPT /Scripts/ additional_tweaks.sh
 				;;
 			esac
 		done	
@@ -117,8 +74,6 @@ else
 	unset IFS
 
 	if [[ ! -z $SEL ]]; then
-		#notify-send cannot work as root
-		USER=$(cat /etc/passwd|grep 1000|sed "s/:.*$//g");
-		su $USER -c "/usr/bin/notify-send -u normal 'Complete' 'Enjoy your system!'"
+		COMPLETION_NOTIFICATION 'Complete' 'Enjoy your system!'
 	fi
 fi

@@ -1,17 +1,15 @@
 #!/bin/bash
 
-# check if zenity is installed, if not install it
-if [ "$(dpkg -l | awk '/zenity/ {print }'|wc -l)" -ge 1 ]; then
-  	:
-else
-  	sudo apt install zenity -y
-fi
+#Inclusion of Essential Scripts
+source ./Scripts/Function/FIND_EXECUTE_SCRIPT.sh
+FIND_EXECUTE_SCRIPT /Scripts/Function/ FUNC_IN_RAW_SCRIPT.sh
+
+# check if zenity is installed
+CHECK_ZENITY_ELSE_INSTALL
 
 # run only if a superuser
 if [[ $EUID -ne 0 ]]; then
-	#every zenity command will have height=480 and width=720 for the sake of uniformity
-	zenity --error --icon-name=error --title="ROOT permission required!" --text="\nThis script requires ROOT permission. Run with sudo!" --no-wrap 2>/dev/null
-	notify-send -u normal "ERROR" "Re-run "$(basename "$0")""
+	IF_NOT_SUPERUSER $(basename "$0")
    	exit 1
 else
 #if all permissions granted
@@ -78,8 +76,6 @@ else
 	unset IFS
 
 	if [[ ! -z $TWEAK ]]; then
-		#notify-send cannot work as root
-		USER=$(cat /etc/passwd|grep 1000|sed "s/:.*$//g");
-		su $USER -c "/usr/bin/notify-send -u normal 'Complete' 'Additional Tweaks'"
+		COMPLETION_NOTIFICATION 'Complete' 'Additional Tweaks'
 	fi
 fi
