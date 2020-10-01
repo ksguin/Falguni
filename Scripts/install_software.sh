@@ -3,6 +3,7 @@
 #Inclusion of Essential Scripts
 source ./Scripts/Function/FIND_EXECUTE_SCRIPT.sh
 FIND_EXECUTE_SCRIPT /Scripts/Function/ FUNC_IN_RAW_SCRIPT.sh
+FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
 
 # check if zenity is installed
 CHECK_ZENITY_ELSE_INSTALL
@@ -71,16 +72,12 @@ else
 
 			"Spotify")		#Spotify Music Player
 
-					FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
-					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "spotify" "Spotify" "spotify"
 				;;
 
 			"VLC")			#VLC Media Player
 			
-					FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
-
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "vlc" "VLC" "vlc"
 				;;
@@ -117,8 +114,6 @@ else
 
 			"Discord")				#Discord
 						
-					FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
-					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "discord" "Discord" "discord"
 				;;
@@ -154,8 +149,6 @@ else
 
 			"Telegram Desktop")		#Official Desktop Client for the Telegram Messenger
 						
-					FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
-					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "telegram-desktop" "Telegram Desktop" "telegram-desktop"
 				;;
@@ -192,11 +185,8 @@ else
 
 			"Android Studio")		#Android Studio IDE
 					
-					FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
-					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "android-studio --classic" "Android Studio" "android-studio"
-						
 				;;
 
 			"Git")				#A fast, scalable, distributed free & open-source VCS
@@ -274,8 +264,6 @@ else
 				;;
 
 			"Visual Studio Code")		#A Free Source-Code Editor made by Microsoft (vscode)
-					
-					FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
 					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "code --classic" "Visual Studio Code" "code"
