@@ -4,6 +4,7 @@
 source ./Scripts/Function/FIND_EXECUTE_SCRIPT.sh
 FIND_EXECUTE_SCRIPT /Scripts/Function/ FUNC_IN_RAW_SCRIPT.sh
 FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
+FIND_EXECUTE_SCRIPT /Scripts/Function/ APT_INSTALL.sh
 
 # check if zenity is installed
 CHECK_ZENITY_ELSE_INSTALL
@@ -39,35 +40,9 @@ else
 			case $option in
 
 			"Kdenlive")			#Free, Open-source, Non-Linear Video Editor by KDE
-					#if already present, don't install
-					if [[ $(which kdenlive | grep -w "kdenlive" | awk {'print $0'}) ]]; then
-						zenity --info --timeout 5\
-						--text="\nKdenlive Already Installed\t\t"\
-						--title "Installed" --no-wrap 2>/dev/null
-					else
-						#Adding ppa for Kdenlive
-						(sudo add-apt-repository -y ppa:kdenlive/kdenlive-stable 2>/dev/null | \
-						tee >(xargs -I % echo "#%")) | \
-						zenity --progress --width=720 --pulsate \
-						--no-cancel --auto-kill --auto-close 2>/dev/null
-						
-						#Refreshing apt-get
-						(sudo apt-get update 2>/dev/null | \
-						tee >(xargs -I % echo "#%")) | \
-						zenity --progress --width=720 --pulsate \
-						--no-cancel --auto-kill --auto-close 2>/dev/null
-
-						#Installing Kdenlive
-						(sudo apt-get -y install kdenlive 2>/dev/null | \
-						tee >(xargs -I % echo "#%")) | \
-						zenity --progress --width=720 --pulsate \
-						--no-cancel --auto-kill --auto-close 2>/dev/null
-
-						#Installation Complete Dialog
-						zenity --info --timeout 5\
-						--text="\nInstallation Complete\t\t"\
-						--title "Kdenlive" --no-wrap 2>/dev/null
-					fi
+			
+					# APT_INSTALL_PPA_UPDATE_INSTALL "<PPA>" "<apt software code e.g. kdenlive>" "Package Display name in UI" "<package name in apt list>"
+					APT_INSTALL_PPA_UPDATE_INSTALL "ppa:kdenlive/kdenlive-stable" "kdenlive" "Kdenlive" "kdenlive"
 				;;
 
 			"Spotify")		#Spotify Music Player
@@ -232,35 +207,9 @@ else
 				;;
 
 			"Stacer")			#Stacer Linux Optimizer & Monitoring
-					#if already present, don't install
-					if [[ $(which stacer | grep -w "stacer" | awk {'print $0'}) ]]; then
-						zenity --info --timeout 5\
-						--text="\nStacer Already Installed\t\t"\
-						--title "Installed" --no-wrap 2>/dev/null
-					else
-						#Adding ppa for Stacer
-						(sudo add-apt-repository -y ppa:oguzhaninan/stacer 2>/dev/null | \
-						tee >(xargs -I % echo "#%")) | \
-						zenity --progress --width=720 --pulsate \
-						--no-cancel --auto-kill --auto-close 2>/dev/null
-						
-						#Refreshing apt-get
-						(sudo apt-get update 2>/dev/null | \
-						tee >(xargs -I % echo "#%")) | \
-						zenity --progress --width=720 --pulsate \
-						--no-cancel --auto-kill --auto-close 2>/dev/null
-
-						#Installing Stacer
-						(sudo apt-get -y install stacer 2>/dev/null | \
-						tee >(xargs -I % echo "#%")) | \
-						zenity --progress --width=720 --pulsate \
-						--no-cancel --auto-kill --auto-close 2>/dev/null
-
-						#Installation Complete Dialog
-						zenity --info --timeout 5\
-						--text="\nInstallation Complete\t\t"\
-						--title "Stacer" --no-wrap 2>/dev/null
-					fi
+			
+					# APT_INSTALL_PPA_UPDATE_INSTALL "<PPA>" "<apt software code e.g. kdenlive>" "Package Display name in UI" "<package name in apt list>"
+					APT_INSTALL_PPA_UPDATE_INSTALL "ppa:oguzhaninan/stacer" "stacer" "Stacer" "stacer"
 				;;
 
 			"Visual Studio Code")		#A Free Source-Code Editor made by Microsoft (vscode)
