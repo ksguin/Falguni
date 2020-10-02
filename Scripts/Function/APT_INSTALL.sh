@@ -3,10 +3,9 @@
 #--How to USE--#
 # APT_INSTALL_PPA_UPDATE_INSTALL "<PPA>" "<apt software code e.g. kdenlive>" "Package Display name in UI" "<package name in apt list>"
 #--------------#
-
 APT_INSTALL_PPA_UPDATE_INSTALL() {
 	PPA=$1
-	software=$2
+	Software=$2
 	Name=$3
 	Aptlisting=$4
 	
@@ -26,7 +25,7 @@ APT_INSTALL_PPA_UPDATE_INSTALL() {
 		APT_REFRESH
 		
 		#Installing
-		(sudo apt-get -y install $software 2>/dev/null | \
+		(sudo apt-get -y install $Software 2>/dev/null | \
 		tee >(xargs -I % echo "#%")) | \
 		zenity --progress --width=720 --pulsate --title="$Name" \
 		--no-cancel --auto-kill --auto-close 2>/dev/null
@@ -38,9 +37,35 @@ APT_INSTALL_PPA_UPDATE_INSTALL() {
 
 
 #--How to USE--#
+# APT_INSTALL_DIRECT "<apt software code e.g. git>" "Package Display name in UI" "<package name in apt list>"
+#--------------#
+APT_INSTALL_DIRECT() {
+	Software=$1
+	Name=$2
+	Aptlisting=$3
+	
+	#if already present, don't install
+	if [[ $(which $Aptlisting | grep -w "$Aptlisting" | awk {'print $0'}) ]]; then
+		zenity --info --timeout 5\
+		--text="\n$Name Already Installed\t\t"\
+		--title "Installed" --no-wrap 2>/dev/null
+	else
+		#Installing
+		(sudo apt -y install $Software 2>/dev/null | \
+		tee >(xargs -I % echo "#%")) | \
+		zenity --progress --width=720 --pulsate --title="$Name" \
+		--no-cancel --auto-kill --auto-close 2>/dev/null
+		
+		#Installation Complete Dialog
+		INSTALLATION_COMPLETE $Name
+	fi
+}
+
+#--------------------------------------------------HELPERS--------------------------------------------------#
+
+#--How to USE--#
 # APT_REFRESH
 #--------------#
-
 APT_REFRESH() {
 	(sudo apt update 2>/dev/null | \
 	tee >(xargs -I % echo "#%")) | \
@@ -48,6 +73,10 @@ APT_REFRESH() {
 	--no-cancel --auto-kill --auto-close 2>/dev/null
 }
 
+
+#--How to USE--#
+# INSTALLATION_COMPLETE $VAR_NAME
+#--------------#
 INSTALLATION_COMPLETE() {
 	Name=$1
 	
