@@ -94,32 +94,12 @@ else
 				;;
 
 			"Google Chrome")			#Google Chrome web browser
-					#if already present, don't install
-					if [[ $(which google-chrome-stable | grep -w "google-chrome-stable" | awk {'print $0'}) ]]; then
-						zenity --info --timeout 5\
-						--text="\nGoogle Chrome Already Installed\t\t"\
-						--title "Installed" --no-wrap 2>/dev/null
-					else
-						wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-						sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-						
-						#Refreshing apt
-						(sudo apt update 2>/dev/null | \
-						tee >(xargs -I % echo "#%")) | \
-						zenity --progress --width=720 --pulsate \
-						--no-cancel --auto-kill --auto-close 2>/dev/null
-
-						#Installing Google Chrome
-						(sudo apt-get -y install google-chrome-stable 2>/dev/null | \
-						tee >(xargs -I % echo "#%")) | \
-						zenity --progress --width=720 --pulsate \
-						--no-cancel --auto-kill --auto-close 2>/dev/null
-
-						#Installation Complete Dialog
-						zenity --info --timeout 5\
-						--text="\nInstallation Complete\t\t"\
-						--title "Google Chrome" --no-wrap 2>/dev/null
-					fi
+					
+					Arch=$(GET_SYSTEM_ARCH)
+					Url="https://dl.google.com/linux/direct/google-chrome-stable_current_$Arch.deb"
+					
+					# APT_INSTALL_WGET "<Refined static URL to download>""<Term in .deb package to search for>" "Package Display name in UI" "<package name in apt list>"
+					APT_INSTALL_WGET $Url "google-chrome-stable" "Google Chrome" "google-chrome-stable"
 				;;
 
 			"Telegram Desktop")		#Official Desktop Client for the Telegram Messenger
