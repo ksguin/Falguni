@@ -1,6 +1,15 @@
 #!/bin/bash
 
 #--How to USE--#
+# GET_SYSTEM_ARCH
+#--------------#
+GET_SYSTEM_ARCH() {
+	Arch=$(dpkg --print-architecture)
+	echo "$Arch"
+}
+
+
+#--How to USE--#
 # RUN_UPDATE_MANAGER_ONCE
 #--------------#
 RUN_UPDATE_MANAGER_ONCE() {

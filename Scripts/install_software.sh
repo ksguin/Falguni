@@ -3,6 +3,8 @@
 #Inclusion of Essential Scripts
 source ./Scripts/Function/FIND_EXECUTE_SCRIPT.sh
 FIND_EXECUTE_SCRIPT /Scripts/Function/ FUNC_IN_RAW_SCRIPT.sh
+FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
+FIND_EXECUTE_SCRIPT /Scripts/Function/ APT_INSTALL.sh
 
 # check if zenity is installed
 CHECK_ZENITY_ELSE_INSTALL
@@ -38,49 +40,19 @@ else
 			case $option in
 
 			"Kdenlive")			#Free, Open-source, Non-Linear Video Editor by KDE
-					#if already present, don't install
-					if [[ $(which kdenlive | grep -w "kdenlive" | awk {'print $0'}) ]]; then
-						zenity --info --timeout 5\
-						--text="\nKdenlive Already Installed\t\t"\
-						--title "Installed" --no-wrap 2>/dev/null
-					else
-						#Adding ppa for Kdenlive
-						(sudo add-apt-repository -y ppa:kdenlive/kdenlive-stable 2>/dev/null | \
-						tee >(xargs -I % echo "#%")) | \
-						zenity --progress --width=720 --pulsate \
-						--no-cancel --auto-kill --auto-close 2>/dev/null
-						
-						#Refreshing apt-get
-						(sudo apt-get update 2>/dev/null | \
-						tee >(xargs -I % echo "#%")) | \
-						zenity --progress --width=720 --pulsate \
-						--no-cancel --auto-kill --auto-close 2>/dev/null
-
-						#Installing Kdenlive
-						(sudo apt-get -y install kdenlive 2>/dev/null | \
-						tee >(xargs -I % echo "#%")) | \
-						zenity --progress --width=720 --pulsate \
-						--no-cancel --auto-kill --auto-close 2>/dev/null
-
-						#Installation Complete Dialog
-						zenity --info --timeout 5\
-						--text="\nInstallation Complete\t\t"\
-						--title "Kdenlive" --no-wrap 2>/dev/null
-					fi
+			
+					# APT_INSTALL_PPA_UPDATE_INSTALL "<PPA>" "<apt software code e.g. kdenlive>" "Package Display name in UI" "<package name in apt list>"
+					APT_INSTALL_PPA_UPDATE_INSTALL "ppa:kdenlive/kdenlive-stable" "kdenlive" "Kdenlive" "kdenlive"
 				;;
 
 			"Spotify")		#Spotify Music Player
 
-					FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
-					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "spotify" "Spotify" "spotify"
 				;;
 
 			"VLC")			#VLC Media Player
 			
-					FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
-
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "vlc" "VLC" "vlc"
 				;;
@@ -117,45 +89,21 @@ else
 
 			"Discord")				#Discord
 						
-					FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
-					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "discord" "Discord" "discord"
 				;;
 
 			"Google Chrome")			#Google Chrome web browser
-					#if already present, don't install
-					if [[ $(which google-chrome-stable | grep -w "google-chrome-stable" | awk {'print $0'}) ]]; then
-						zenity --info --timeout 5\
-						--text="\nGoogle Chrome Already Installed\t\t"\
-						--title "Installed" --no-wrap 2>/dev/null
-					else
-						wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-						sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-						
-						#Refreshing apt
-						(sudo apt update 2>/dev/null | \
-						tee >(xargs -I % echo "#%")) | \
-						zenity --progress --width=720 --pulsate \
-						--no-cancel --auto-kill --auto-close 2>/dev/null
-
-						#Installing Google Chrome
-						(sudo apt-get -y install google-chrome-stable 2>/dev/null | \
-						tee >(xargs -I % echo "#%")) | \
-						zenity --progress --width=720 --pulsate \
-						--no-cancel --auto-kill --auto-close 2>/dev/null
-
-						#Installation Complete Dialog
-						zenity --info --timeout 5\
-						--text="\nInstallation Complete\t\t"\
-						--title "Google Chrome" --no-wrap 2>/dev/null
-					fi
+					
+					Arch=$(GET_SYSTEM_ARCH)
+					Url="https://dl.google.com/linux/direct/google-chrome-stable_current_$Arch.deb"
+					
+					# APT_INSTALL_WGET "<Refined static URL to download>""<Term in .deb package to search for>" "Package Display name in UI" "<package name in apt list>"
+					APT_INSTALL_WGET $Url "google-chrome-stable" "Google Chrome" "google-chrome-stable"
 				;;
 
 			"Telegram Desktop")		#Official Desktop Client for the Telegram Messenger
 						
-					FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
-					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "telegram-desktop" "Telegram Desktop" "telegram-desktop"
 				;;
@@ -192,27 +140,16 @@ else
 
 			"Android Studio")		#Android Studio IDE
 					
-					FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
-					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "android-studio --classic" "Android Studio" "android-studio"
-						
 				;;
 
 			"Git")				#A fast, scalable, distributed free & open-source VCS
-					#if already present, don't install
-					if [[ $(which git | grep -w "git" | awk {'print $0'}) ]]; then
-						zenity --info --timeout 5\
-						--text="\nGit Already Installed\t\t"\
-						--title "Installed" --no-wrap 2>/dev/null
-					else
-						#Installing Git
-						(sudo apt-get -y install git 2>/dev/null | \
-						tee >(xargs -I % echo "#%")) | \
-						zenity --progress --width=720 --pulsate \
-						--no-cancel --auto-kill --auto-close 2>/dev/null
-
-						#Setup Git name & email? (if installed)
+					
+					#APT_INSTALL_DIRECT "<apt software code e.g. git>" "Package Display name in UI" "<package name in apt list>"
+					APT_INSTALL_DIRECT "git" "Git" "git"
+					
+					#Setup Git name & email? (if installed)
 						if [[ $(which git | grep -w "git" | awk {'print $0'}) ]]; then
 							zenity --question --title="Git Setup" \
 							--text="\nDo you want to Setup Git Name &amp; Email right now?" --width=720 --no-wrap \
@@ -220,62 +157,28 @@ else
 							#If Yes, setup
 							if [[ $? -eq 0 ]]; then
 								#git username
-								username=$(zenity --entry --title="Git Setup" --text="Enter Git Username" --width=480 2>/dev/null)
+								username=$(zenity --entry --title="Git Setup" --text="Enter Your Name" --width=480 2>/dev/null)
 								#if $username isn't blank, execute command
 								if [[ ! -z "$username" ]]; then
 									git config --global user.name "\"$username\""
 								fi
 								#git useremail
-								useremail=$(zenity --entry --title="Git Setup" --text="Enter Git Email" --width=480 2>/dev/null)
+								useremail=$(zenity --entry --title="Git Setup" --text="Enter Your Email" --width=480 2>/dev/null)
 								#if $useremail isn't blank, execute command
 								if [[ ! -z "$useremail" ]]; then
 									git config --global user.email "\"$useremail\""
 								fi
 							fi
 						fi
-
-						#Installation Complete Dialog
-						zenity --info --timeout 5\
-						--text="\nInstallation Complete\t\t"\
-						--title "Git" --no-wrap 2>/dev/null
-					fi
 				;;
 
 			"Stacer")			#Stacer Linux Optimizer & Monitoring
-					#if already present, don't install
-					if [[ $(which stacer | grep -w "stacer" | awk {'print $0'}) ]]; then
-						zenity --info --timeout 5\
-						--text="\nStacer Already Installed\t\t"\
-						--title "Installed" --no-wrap 2>/dev/null
-					else
-						#Adding ppa for Stacer
-						(sudo add-apt-repository -y ppa:oguzhaninan/stacer 2>/dev/null | \
-						tee >(xargs -I % echo "#%")) | \
-						zenity --progress --width=720 --pulsate \
-						--no-cancel --auto-kill --auto-close 2>/dev/null
-						
-						#Refreshing apt-get
-						(sudo apt-get update 2>/dev/null | \
-						tee >(xargs -I % echo "#%")) | \
-						zenity --progress --width=720 --pulsate \
-						--no-cancel --auto-kill --auto-close 2>/dev/null
-
-						#Installing Stacer
-						(sudo apt-get -y install stacer 2>/dev/null | \
-						tee >(xargs -I % echo "#%")) | \
-						zenity --progress --width=720 --pulsate \
-						--no-cancel --auto-kill --auto-close 2>/dev/null
-
-						#Installation Complete Dialog
-						zenity --info --timeout 5\
-						--text="\nInstallation Complete\t\t"\
-						--title "Stacer" --no-wrap 2>/dev/null
-					fi
+			
+					# APT_INSTALL_PPA_UPDATE_INSTALL "<PPA>" "<apt software code e.g. kdenlive>" "Package Display name in UI" "<package name in apt list>"
+					APT_INSTALL_PPA_UPDATE_INSTALL "ppa:oguzhaninan/stacer" "stacer" "Stacer" "stacer"
 				;;
 
 			"Visual Studio Code")		#A Free Source-Code Editor made by Microsoft (vscode)
-					
-					FIND_EXECUTE_SCRIPT /Scripts/Function/ SNAP_INSTALL.sh
 					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "code --classic" "Visual Studio Code" "code"
