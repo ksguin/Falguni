@@ -127,7 +127,7 @@ WGET_DOWNLOAD_URL_NAME() {
 			remain=`echo $data | grep -o "[0-9A-Za-z]*$" `
 			echo $percent
 			
-			echo "#Downloading $1\n$current of $total_size ($percent%)\nSpeed : $speed/Sec\nEstimated time : $remain"
+			echo "#($percent%) Downloaded:$current"B" of $total_size"B" ( $speed"B"/s )\tETA : $remain\nDownloading $1"
 		fi
 	done > $pipe &
  
@@ -135,7 +135,7 @@ WGET_DOWNLOAD_URL_NAME() {
 	wget_pid=`echo $wget_info|cut -d'|' -f1 `
  
 	software=$2
-	zenity --progress 2>/dev/null --no-cancel --auto-close --text="Connecting to $1\n\n\n" --width="720" --title="Downloading $software"< $pipe
+	zenity --progress 2>/dev/null --no-cancel --auto-close --text="Connecting to $1" --width="720" --title="Downloading $software"< $pipe
 	if [ "`ps -A |grep "$wget_pid"`" ];then
 		kill $wget_pid
 	fi
