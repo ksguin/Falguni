@@ -8,6 +8,7 @@ SNAP_INSTALL() {
 	software=$1
 	Name=$2
 	snaplisting=$3
+	classicflag=$4
 	
 	#if already present, don't install
 	if [[ "$snaplisting" == $(snap list | awk {'print $1'} | grep $snaplisting) ]]; then
@@ -15,7 +16,7 @@ SNAP_INSTALL() {
 						--text="\n$Name Already Installed\t\t"\
 						--title "Installed" --no-wrap 2>/dev/null
 	else
-		sudo snap install $software 2>&1 | \
+		sudo snap install $software $classicflag 2>&1 | \
 		tee >( \
 		zenity --progress --pulsate --width=720\
 		--text="Downloading $Name..." --auto-kill --auto-close --no-cancel\

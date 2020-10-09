@@ -141,7 +141,7 @@ else
 			"Android Studio")		#Android Studio IDE
 					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
-					SNAP_INSTALL "android-studio --classic" "Android Studio" "android-studio"
+					SNAP_INSTALL "android-studio" "Android Studio" "android-studio" "--classic"
 				;;
 
 			"Git")				#A fast, scalable, distributed free & open-source VCS
@@ -181,7 +181,7 @@ else
 			"Visual Studio Code")		#A Free Source-Code Editor made by Microsoft (vscode)
 					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
-					SNAP_INSTALL "code --classic" "Visual Studio Code" "code"
+					SNAP_INSTALL "code" "Visual Studio Code" "code" "--classic"
 				;;
 			esac
 		done
