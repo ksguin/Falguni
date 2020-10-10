@@ -123,6 +123,7 @@ else
 		FALSE 		'Android Studio'	"Android Studio IDE for Android"\
 		TRUE		'Git'			"A Fast, Scalable, Distributed Free & Open-Source VCS"\
 		TRUE 		Stacer 			"Linux System Optimizer & Monitoring"\
+		FALSE		'TeamViewer'		"TeamViewer: The Remote Desktop Software"\
 		FALSE		'Visual Studio Code'	"A Free Source-Code Editor made by Microsoft (vscode)" );
 
 	#column="2" is sent to output by default
@@ -178,6 +179,15 @@ else
 					APT_INSTALL_PPA_UPDATE_INSTALL "ppa:oguzhaninan/stacer" "stacer" "Stacer" "stacer"
 				;;
 
+			"TeamViewer")			#TeamViewer: The Remote Desktop Software
+					
+					Arch=$(GET_SYSTEM_ARCH)
+					Url="https://download.teamviewer.com/download/linux/teamviewer_$Arch.deb"
+					
+					# APT_INSTALL_WGET "<Refined static URL to download>""<Term in .deb package to search for>" "Package Display name in UI" "<package name in apt list>"
+					APT_INSTALL_WGET $Url "teamviewer" "TeamViewer" "teamviewer"
+				;;
+				
 			"Visual Studio Code")		#A Free Source-Code Editor made by Microsoft (vscode)
 					
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
