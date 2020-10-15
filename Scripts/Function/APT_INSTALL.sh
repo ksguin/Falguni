@@ -63,13 +63,14 @@ APT_INSTALL_DIRECT() {
 
 
 #--How to USE--#
-# APT_INSTALL_WGET "<Refined static URL to download>""<Term in .deb package to search for>" "Package Display name in UI" "<package name in apt list>"
+# APT_INSTALL_WGET "<Refined static URL to download>""<Term in .deb package to search for>" "Package Display name in UI" "<package name in apt list>" "<-O name_of_deb_you_want.deb>"
 #--------------#
 APT_INSTALL_WGET() {
 	URL=$1
 	DebTerm=$2
 	Name=$3
 	Aptlisting=$4
+	DebRename=$5
 	
 	#if already present, don't install
 	if [[ $(which $Aptlisting | grep -w "$Aptlisting" | awk {'print $0'}) ]]; then
@@ -78,11 +79,11 @@ APT_INSTALL_WGET() {
 		--title "Installed" --no-wrap 2>/dev/null
 	else
 		if [ $URL ];then
-  			WGET_DOWNLOAD_URL_NAME "$URL" "$Name"
+  			WGET_DOWNLOAD_URL_NAME "$URL" "$Name" "$DebRename"
 		else
   			dllink=$(zenity --entry --text "Your download link :" --width="350" --entry-text "" --title="Download $Name url")
   			if [ $dllink ];then
-    				WGET_DOWNLOAD_URL_NAME "$dllink" "$Name"
+    				WGET_DOWNLOAD_URL_NAME "$dllink" "$Name" "$DebRename"
   			fi
 		fi
 
@@ -114,7 +115,7 @@ WGET_DOWNLOAD_URL_NAME() {
 	pipe="/tmp/pipe.`echo '$rand' | md5sum | tr -d ' -'`"
 	mkfifo $pipe
 	
-	wget -c $1 2>&1 | while read data;do
+	wget -c $3 $1 2>&1 | while read data;do
 		if [ "`echo $data | grep '^Length:'`" ]; then
 			total_size=`echo $data | grep "^Length:" | sed 's/.*\((.*)\).*/\1/' |  tr -d '()'`
 		fi
@@ -123,11 +124,11 @@ WGET_DOWNLOAD_URL_NAME() {
 		
 			percent=`echo $data | grep -o "[0-9]*%" | tr -d '%'`
 			current=`echo $data | grep "[0-9]*%" | sed 's/\([0-9BKMG.]\+\).*/\1/' `
-			speed=`echo $data | grep "[0-9]*%" | sed 's/.*\(% [0-9BKMG.]\+\).*/\1/' | tr -d ' %'`
+			#speed=`echo $data | grep "[0-9]*%" | sed 's/.*\(% [0-9BKMG.]\+\).*/\1/' | tr -d ' %'`
 			remain=`echo $data | grep -o "[0-9A-Za-z]*$" `
 			echo $percent
 			
-			echo "#($percent%) Downloaded:$current"B" of $total_size"B" ( $speed"B"/s )\tETA : $remain\nDownloading $1"
+			echo "#($percent%) Downloaded:$current"B" of $total_size"B"\tETA : $remain\nDownloading $1"
 		fi
 	done > $pipe &
  
