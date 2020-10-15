@@ -89,8 +89,10 @@ else
 
 			"Discord")				#Discord
 						
-					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
-					SNAP_INSTALL "discord" "Discord" "discord"
+					Url="https://discordapp.com/api/download?platform=linux&format=deb"
+					
+					#APT_INSTALL_WGET "<Refined static URL to download>""<Term in .deb package to search for>" "Package Display name in UI" "<package name in apt list>" "<-O name_of_deb_you_want.deb>"
+					APT_INSTALL_WGET $Url "discord" "Discord" "discord" "-O discord.deb"
 				;;
 
 			"Google Chrome")			#Google Chrome web browser
