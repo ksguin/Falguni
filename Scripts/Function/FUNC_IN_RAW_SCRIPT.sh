@@ -10,6 +10,20 @@ GET_SYSTEM_ARCH() {
 
 
 #--How to USE--#
+# GET_OS_BITS_RETURN_CUSTOM "<Custom what to return for 64 bit>" "<Custom what to return for 32 bit>"
+#--------------#
+GET_OS_BITS_RETURN_CUSTOM() {
+	OS_Bits=$(getconf LONG_BIT)
+	
+	if [[ "$OS_Bits" -eq 64 ]]; then
+		echo "$1"
+	else
+		echo "$2"
+	fi
+}
+
+
+#--How to USE--#
 # RUN_UPDATE_MANAGER_ONCE
 #--------------#
 RUN_UPDATE_MANAGER_ONCE() {
