@@ -12,7 +12,7 @@ SNAP_INSTALL() {
 	
 	#if already present, don't install
 	if [[ "$snaplisting" == $(snap list | awk {'print $1'} | grep $snaplisting) ]]; then
-						zenity --info --timeout 5\
+						zenity --info --timeout 5 --window-icon="./Icons/Install/$snaplisting.png" \
 						--text="\n$Name Already Installed\t\t"\
 						--title "Installed" --no-wrap 2>/dev/null
 	else

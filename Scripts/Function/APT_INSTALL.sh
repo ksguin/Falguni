@@ -11,14 +11,14 @@ APT_INSTALL_PPA_UPDATE_INSTALL() {
 	
 	#if already present, don't install
 	if [[ $(which $Aptlisting | grep -w "$Aptlisting" | awk {'print $0'}) ]]; then
-		zenity --info --timeout 5\
+		zenity --info --timeout 5 --window-icon="./Icons/Install/$Aptlisting.png" \
 		--text="\n$Name Already Installed\t\t"\
 		--title "Installed" --no-wrap 2>/dev/null
 	else
 		#Adding ppa
 		(sudo add-apt-repository -y $PPA 2>/dev/null | \
 		tee >(xargs -I % echo "#%")) | \
-		zenity --progress --width=720 --pulsate --title="$Name: $PPA" \
+		zenity --progress --width=720 --pulsate --title="$Name: $PPA" --window-icon="./Icons/Install/$Aptlisting.png" \
 		--no-cancel --auto-kill --auto-close 2>/dev/null
 		
 		#Refreshing apt
@@ -27,11 +27,11 @@ APT_INSTALL_PPA_UPDATE_INSTALL() {
 		#Installing
 		(sudo apt-get -y install $Software 2>/dev/null | \
 		tee >(xargs -I % echo "#%")) | \
-		zenity --progress --width=720 --pulsate --title="$Name" \
+		zenity --progress --width=720 --pulsate --title="$Name" --window-icon="./Icons/Install/$Aptlisting.png" \
 		--no-cancel --auto-kill --auto-close 2>/dev/null
 		
 		#Installation Complete Dialog
-		INSTALLATION_COMPLETE $Name
+		INSTALLATION_COMPLETE $Name $Aptlisting
 	fi		
 }
 
@@ -46,18 +46,18 @@ APT_INSTALL_DIRECT() {
 	
 	#if already present, don't install
 	if [[ $(which $Aptlisting | grep -w "$Aptlisting" | awk {'print $0'}) ]]; then
-		zenity --info --timeout 5\
+		zenity --info --timeout 5 --window-icon="./Icons/Install/$Aptlisting.png" \
 		--text="\n$Name Already Installed\t\t"\
 		--title "Installed" --no-wrap 2>/dev/null
 	else
 		#Installing
 		(sudo apt -y install $Software 2>/dev/null | \
 		tee >(xargs -I % echo "#%")) | \
-		zenity --progress --width=720 --pulsate --title="$Name" \
+		zenity --progress --width=720 --pulsate --title="$Name" --window-icon="./Icons/Install/$Aptlisting.png" \
 		--no-cancel --auto-kill --auto-close 2>/dev/null
 		
 		#Installation Complete Dialog
-		INSTALLATION_COMPLETE $Name
+		INSTALLATION_COMPLETE $Name $Aptlisting
 	fi
 }
 
@@ -74,32 +74,32 @@ APT_INSTALL_WGET() {
 	
 	#if already present, don't install
 	if [[ $(which $Aptlisting | grep -w "$Aptlisting" | awk {'print $0'}) ]]; then
-		zenity --info --timeout 5\
+		zenity --info --timeout 5 --window-icon="./Icons/Install/$Aptlisting.png" \
 		--text="\n$Name Already Installed\t\t"\
 		--title "Installed" --no-wrap 2>/dev/null
 	else
 		if [ $URL ];then
-  			WGET_DOWNLOAD_URL_NAME "$URL" "$Name" "$DebRename"
+  			WGET_DOWNLOAD_URL_NAME "$URL" "$Name" "$DebRename" "$Aptlisting"
 		else
-  			dllink=$(zenity --entry --text "Your download link :" --width="350" --entry-text "" --title="Download $Name url")
+  			dllink=$(zenity --entry  --window-icon="./Icons/Install/$Aptlisting.png" --text "Your download link :" --width="350" --entry-text "" --title="Download $Name url")
   			if [ $dllink ];then
-    				WGET_DOWNLOAD_URL_NAME "$dllink" "$Name" "$DebRename"
+    				WGET_DOWNLOAD_URL_NAME "$dllink" "$Name" "$DebRename" "$Aptlisting"
   			fi
 		fi
 
 		#Find the name of the downloaded .deb package and Install it
 		DEB_PKG=$(ls | grep $DebTerm)
 		if [[ ! -z $DEB_PKG ]]; then	#if package exists, install
-			DEB_PACKAGE_INSTALL_AND_CLEANUP $DEB_PKG
+			DEB_PACKAGE_INSTALL_AND_CLEANUP $DEB_PKG $Aptlisting
 		else	
 			#error message
-			zenity --error --timeout 3\
+			zenity --error --timeout 3 --window-icon="./Icons/Install/$Aptlisting.png" \
 			--text="\nPackage of $Name not found\t\t"\
 			--title "Failed" --no-wrap 2>/dev/null
 		fi
 		
 		#Installation Complete Dialog
-		INSTALLATION_COMPLETE $Name
+		INSTALLATION_COMPLETE $Name $Aptlisting
 	fi
 }
 
@@ -136,7 +136,8 @@ WGET_DOWNLOAD_URL_NAME() {
 	wget_pid=`echo $wget_info|cut -d'|' -f1 `
  
 	software=$2
-	zenity --progress 2>/dev/null --no-cancel --auto-close --text="Connecting to $1" --width="720" --title="Downloading $software"< $pipe
+	Aptlisting=$4
+	zenity --progress 2>/dev/null --no-cancel --auto-close --window-icon="./Icons/Install/$Aptlisting.png" --text="Connecting to $1" --width="720" --title="Downloading $software"< $pipe
 	if [ "`ps -A |grep "$wget_pid"`" ];then
 		kill $wget_pid
 	fi
@@ -150,11 +151,12 @@ WGET_DOWNLOAD_URL_NAME() {
 #--------------#
 DEB_PACKAGE_INSTALL_AND_CLEANUP() {
 	PKG_NAME=$1
+	Aptlisting=$2
 	
 	#Installing
 	(sudo apt -y install ./$PKG_NAME 2>/dev/null | \
 	tee >(xargs -I % echo "#%")) | \
-	zenity --progress --width=720 --pulsate --title="Installing $PKG_NAME" \
+	zenity --progress --width=720 --pulsate --title="Installing $PKG_NAME" --window-icon="./Icons/Install/$Aptlisting.png" \
 	--no-cancel --auto-kill --auto-close 2>/dev/null
 	
 	#Cleaning up the .deb package after install
@@ -178,8 +180,9 @@ APT_REFRESH() {
 #--------------#
 INSTALLATION_COMPLETE() {
 	Name=$1
+	Aptlisting=$2
 	
-	zenity --info --timeout 5\
+	zenity --info --timeout 5 --window-icon="./Icons/Install/$Aptlisting.png" \
 	--text="\nInstallation Complete\t\t"\
 	--title "$Name" --no-wrap 2>/dev/null
 }
