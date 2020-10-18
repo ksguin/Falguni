@@ -168,7 +168,7 @@ DEB_PACKAGE_INSTALL_AND_CLEANUP() {
 APT_REFRESH() {
 	(sudo apt update 2>/dev/null | \
 	tee >(xargs -I % echo "#%")) | \
-	zenity --progress --width=720 --pulsate --title="Refreshing Apt List" \
+	zenity --progress --window-icon="./Icons/falguni.png" --width=720 --pulsate --title="Refreshing Apt List" \
 	--no-cancel --auto-kill --auto-close 2>/dev/null
 }
 
