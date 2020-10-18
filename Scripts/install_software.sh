@@ -40,13 +40,13 @@ else
 			case $option in
 
 			"Kdenlive")			#Free, Open-source, Non-Linear Video Editor by KDE
-			
+					CHECK_ICON_PRESENT_ELSE_FETCH /Icons/Install/ "kdenlive.png" "https://icons.iconarchive.com/icons/papirus-team/papirus-apps/64/kdenlive-icon.png"
 					# APT_INSTALL_PPA_UPDATE_INSTALL "<PPA>" "<apt software code e.g. kdenlive>" "Package Display name in UI" "<package name in apt list>"
 					APT_INSTALL_PPA_UPDATE_INSTALL "ppa:kdenlive/kdenlive-stable" "kdenlive" "Kdenlive" "kdenlive"
 				;;
 
 			"Spotify")		#Spotify Music Player
-
+					CHECK_ICON_PRESENT_ELSE_FETCH /Icons/Install/ "spotify.png" "https://icons.iconarchive.com/icons/dakirby309/simply-styled/64/Spotify-icon.png"
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "spotify" "Spotify" "spotify"
 				;;
@@ -88,7 +88,7 @@ else
 			case $option in
 
 			"Discord")				#Discord
-						
+					CHECK_ICON_PRESENT_ELSE_FETCH /Icons/Install/ "discord.png" "https://icons.iconarchive.com/icons/papirus-team/papirus-apps/64/discord-icon.png"
 					Url="https://discordapp.com/api/download?platform=linux&format=deb"
 					
 					#APT_INSTALL_WGET "<Refined static URL to download>""<Term in .deb package to search for>" "Package Display name in UI" "<package name in apt list>" "<-O name_of_deb_you_want.deb>"
@@ -96,6 +96,7 @@ else
 				;;
 
 			"Google Chrome")			#Google Chrome web browser
+					CHECK_ICON_PRESENT_ELSE_FETCH /Icons/Install/ "google-chrome-stable.png" "https://icons.iconarchive.com/icons/google/chrome/64/Google-Chrome-icon.png"
 					
 					Arch=$(GET_SYSTEM_ARCH)
 					Url="https://dl.google.com/linux/direct/google-chrome-stable_current_$Arch.deb"
@@ -105,7 +106,7 @@ else
 				;;
 
 			"Telegram Desktop")		#Official Desktop Client for the Telegram Messenger
-						
+					CHECK_ICON_PRESENT_ELSE_FETCH /Icons/Install/ "telegram-desktop.png" "https://icons.iconarchive.com/icons/froyoshark/enkel/64/Telegram-icon.png"
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "telegram-desktop" "Telegram Desktop" "telegram-desktop"
 				;;
@@ -142,7 +143,7 @@ else
 			case $option in
 
 			"Android Studio")		#Android Studio IDE
-					
+					CHECK_ICON_PRESENT_ELSE_FETCH /Icons/Install/ "android-studio.png" "https://icons.iconarchive.com/icons/papirus-team/papirus-apps/64/androidstudio-icon.png"
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "android-studio" "Android Studio" "android-studio" "--classic"
 				;;
@@ -176,7 +177,7 @@ else
 				;;
 
 			"Stacer")			#Stacer Linux Optimizer & Monitoring
-			
+					CHECK_ICON_PRESENT_ELSE_FETCH /Icons/Install/ "stacer.png" "https://icons.iconarchive.com/icons/papirus-team/papirus-apps/64/stacer-icon.png"
 					# APT_INSTALL_PPA_UPDATE_INSTALL "<PPA>" "<apt software code e.g. kdenlive>" "Package Display name in UI" "<package name in apt list>"
 					APT_INSTALL_PPA_UPDATE_INSTALL "ppa:oguzhaninan/stacer" "stacer" "Stacer" "stacer"
 				;;
@@ -192,7 +193,7 @@ else
 				;;
 				
 			"Visual Studio Code")		#A Free Source-Code Editor made by Microsoft (vscode)
-					
+					CHECK_ICON_PRESENT_ELSE_FETCH /Icons/Install/ "code.png" "https://icons.iconarchive.com/icons/papirus-team/papirus-apps/64/visual-studio-code-icon.png"
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "code" "Visual Studio Code" "code" "--classic"
 				;;
