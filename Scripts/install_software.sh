@@ -52,7 +52,7 @@ else
 				;;
 
 			"VLC")			#VLC Media Player
-			
+					CHECK_ICON_PRESENT_ELSE_FETCH /Icons/Install/ "vlc.png" "https://icons.iconarchive.com/icons/cornmanthe3rd/plex/64/Media-vlc-icon.png"
 					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
 					SNAP_INSTALL "vlc" "VLC" "vlc"
 				;;
@@ -148,25 +148,25 @@ else
 				;;
 
 			"Git")				#A fast, scalable, distributed free & open-source VCS
-					
+					CHECK_ICON_PRESENT_ELSE_FETCH /Icons/Install/ "git.png" "https://icons.iconarchive.com/icons/papirus-team/papirus-apps/64/git-icon.png"
 					#APT_INSTALL_DIRECT "<apt software code e.g. git>" "Package Display name in UI" "<package name in apt list>"
 					APT_INSTALL_DIRECT "git" "Git" "git"
 					
 					#Setup Git name & email? (if installed)
 						if [[ $(which git | grep -w "git" | awk {'print $0'}) ]]; then
-							zenity --question --title="Git Setup" \
+							zenity --question --title="Git Setup" --window-icon="./Icons/Install/git.png" \
 							--text="\nDo you want to Setup Git Name &amp; Email right now?" --width=720 --no-wrap \
 							2>/dev/null
 							#If Yes, setup
 							if [[ $? -eq 0 ]]; then
 								#git username
-								username=$(zenity --entry --title="Git Setup" --text="Enter Your Name" --width=480 2>/dev/null)
+								username=$(zenity --entry --title="Git Setup" --text="Enter Your Name" --width=480 --window-icon="./Icons/Install/git.png" 2>/dev/null)
 								#if $username isn't blank, execute command
 								if [[ ! -z "$username" ]]; then
 									git config --global user.name "\"$username\""
 								fi
 								#git useremail
-								useremail=$(zenity --entry --title="Git Setup" --text="Enter Your Email" --width=480 2>/dev/null)
+								useremail=$(zenity --entry --title="Git Setup" --text="Enter Your Email" --width=480 --window-icon="./Icons/Install/git.png" 2>/dev/null)
 								#if $useremail isn't blank, execute command
 								if [[ ! -z "$useremail" ]]; then
 									git config --global user.email "\"$useremail\""
@@ -182,6 +182,7 @@ else
 				;;
 
 			"TeamViewer")			#TeamViewer: The Remote Desktop Software
+					CHECK_ICON_PRESENT_ELSE_FETCH /Icons/Install/ "teamviewer.png" "https://icons.iconarchive.com/icons/papirus-team/papirus-apps/64/teamviewer-icon.png"
 					
 					Arch=$(GET_SYSTEM_ARCH)
 					Url="https://download.teamviewer.com/download/linux/teamviewer_$Arch.deb"
