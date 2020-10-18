@@ -20,7 +20,7 @@ if [[ $EUID -ne 0 ]]; then
    	exit 1
 else
 	#Zenity Checklist for all the scripts
-	SEL=$( zenity --list --checklist\
+	SEL=$( zenity --list --checklist --window-icon="./Icons/falguni.png" \
 		2>/dev/null --height=480 --width=720\
 		--text="Don't worry! You will get sub-choices for each selection."\
 		--ok-label "Start" --cancel-label "Exit"\
@@ -33,11 +33,11 @@ else
 
 	# pressed Cancel or closed the dialog window 
 	if [[ $? -eq 1 ]]; then 
-  		zenity --warning --title="Cancelled"\
+  		zenity --warning --title="Cancelled" --window-icon="./Icons/falguni.png" \
 		--text "\nOperation cancelled by user. Nothing will be done!"\
 		2>/dev/null --no-wrap
 	elif [[ -z "$SEL"  ]]; then
-		zenity --warning\
+		zenity --warning --window-icon="./Icons/falguni.png" \
 		--text "\nNo Option Selected. Nothing will be done!"\
 		2>/dev/null --no-wrap
 	else
