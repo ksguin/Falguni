@@ -17,7 +17,7 @@ else
 #if all permissions granted	
 #------------- AUDIO & VIDEO -------------#
 	AAV=$( zenity --list --checklist\
-		2>/dev/null --height=480 --width=720\
+		2>/dev/null --height=480 --width=720 --window-icon="./Icons/falguni.png" \
 		--title="Select items to Install"\
 		--text="The following Software(s) will be Installed"\
 		--ok-label "Install" --cancel-label "Skip"\
@@ -28,7 +28,7 @@ else
 	
 	#column="2" is sent to output by default
 	if [[ $? -eq 0 && -z "$AAV"  ]]; then
-		zenity --warning\
+		zenity --warning --window-icon="./Icons/falguni.png" \
 		--text "\nNo Option Selected. Nothing will be installed!"\
 		2>/dev/null --no-wrap
 	else
@@ -64,7 +64,7 @@ else
 
 #--------- COMMUNICATION & BROWSERS ----------#
 	CNB=$( zenity --list --checklist\
-		2>/dev/null --height=480 --width=720\
+		2>/dev/null --height=480 --width=720 --window-icon="./Icons/falguni.png" \
 		--title="Select items to Install"\
 		--text="The following Software(s) will be Installed"\
 		--ok-label "Install" --cancel-label "Skip"\
@@ -76,7 +76,7 @@ else
 	
 	#column="2" is sent to output by default
 	if [[ $? -eq 0 && -z "$CNB"  ]]; then
-		zenity --warning\
+		zenity --warning --window-icon="./Icons/falguni.png" \
 		--text "\nNo Option Selected. Nothing will be installed!"\
 		2>/dev/null --no-wrap
 	else 
@@ -117,7 +117,7 @@ else
 
 #----------------- UTILITIES -----------------#
 	UTIL=$( zenity --list --checklist\
-		2>/dev/null --height=480 --width=720\
+		2>/dev/null --height=480 --width=720 --window-icon="./Icons/falguni.png" \
 		--title="Select items to Install"\
 		--text="The following Software(s) will be Installed"\
 		--ok-label "Install" --cancel-label "Skip"\
@@ -130,7 +130,7 @@ else
 
 	#column="2" is sent to output by default
 	if [[ $? -eq 0 && -z "$UTIL"  ]]; then
-		zenity --warning\
+		zenity --warning --window-icon="./Icons/falguni.png" \
 		--text "\nNo Option Selected. Nothing will be installed!"\
 		2>/dev/null --no-wrap
 	else 
