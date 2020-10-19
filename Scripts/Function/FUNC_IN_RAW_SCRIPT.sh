@@ -1,6 +1,25 @@
 #!/bin/bash
 
 #--How to USE--#
+# CHECK_ICON_PRESENT_ELSE_FETCH "<path relative to project folder with beginning and trailing / >" "<icon_name.png (I used $Aptlisting)>" "<Url to the icon to fetch>"
+#--------------#
+CHECK_ICON_PRESENT_ELSE_FETCH() {
+	Path=$1
+	Icon=$2
+	Url=$3
+	
+	Fullpath="$(dirname \"${0}\")"$Path$Icon
+	Targetpath="$(dirname \"${0}\")"$Path
+	
+	if find $Fullpath &>/dev/null; then
+		:
+	else
+		(cd $Targetpath && curl -s -o $Icon $Url > /dev/null)	
+	fi
+}
+
+
+#--How to USE--#
 # GET_SYSTEM_ARCH
 #--------------#
 GET_SYSTEM_ARCH() {

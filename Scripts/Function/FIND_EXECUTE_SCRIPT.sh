@@ -13,7 +13,7 @@ FIND_EXECUTE_SCRIPT() {
 	if find $Fullpath -quit; then
 		source $Fullpath
 	else
-		zenity --error --title="File Not Found"\
+		zenity --error --title="File Not Found" --window-icon="./Icons/falguni.png" \
 		2>/dev/null --no-wrap\
 		--text="\nCannot locate File!"
 	fi

@@ -16,7 +16,7 @@ else
 	# selecting fonts to uninstall
 	# here SEL=$ cannot contain whitespace
 	SEL=$( zenity --list --multiple\
-				--text "The following fonts will be removed" 2>/dev/null\
+				--text "The following fonts will be removed" --window-icon="./Icons/falguni.png" 2>/dev/null\
 				--checklist --height=480 --width=720 --ok-label "Remove"\
 				--cancel-label "Skip"\
 				--column "Pick" --column "Fonts" --column "Description"\
@@ -54,12 +54,12 @@ else
 
 	# pressed Cancel or closed the dialog window 
 	if [[ $? -eq 1 ]]; then 
-  		zenity --warning --title="Operation Cancelled"\
+  		zenity --warning --title="Operation Cancelled" --window-icon="./Icons/falguni.png" \
 		--text "\nOperation cancelled by user. No Fonts will be removed!"\
 		2>/dev/null --no-wrap
 	elif [[ -z "$SEL"  ]]; then
 		zenity --warning\
-		--text "\nNo Font Selected. Nothing will be removed!"\
+		--text "\nNo Font Selected. Nothing will be removed!" --window-icon="./Icons/falguni.png" \
 		2>/dev/null --no-wrap
 	else
 		#removing all the selected languages
@@ -68,7 +68,7 @@ else
 			do 
 				( sudo apt-get autoremove --purge -y $i 2>/dev/null | \
 						tee >(xargs -I % echo "#%")) | \
-						zenity --progress --width=720 --pulsate \
+						zenity --progress --width=720 --window-icon="./Icons/falguni.png" --pulsate \
 						--title "Removing $i"\
 						--no-cancel --auto-kill --auto-close 2>/dev/null
 
@@ -80,22 +80,22 @@ else
 				fi
 				#sleep 0.01 ;
 			done		
-		) | zenity --progress --auto-close --width=720 --pulsate --no-cancel --title "Removing Fonts" 2>/dev/null
+		) | zenity --progress --window-icon="./Icons/falguni.png" --auto-close --width=720 --pulsate --no-cancel --title "Removing Fonts" 2>/dev/null
 
 		# Fixing font cache"
 		(
 			sudo fc-cache -fv
-		) | zenity --progress --auto-close --no-cancel --pulsate --width=720 --title "Refreshing Font Cache" 2>/dev/null
+		) | zenity --progress --window-icon="./Icons/falguni.png" --auto-close --no-cancel --pulsate --width=720 --title "Refreshing Font Cache" 2>/dev/null
 
 		(
 		sudo dpkg-reconfigure fontconfig
-		) | zenity --progress --auto-close --no-cancel --pulsate --width=720 --title "Reconfiguring Fonts" 2>/dev/null
+		) | zenity --progress --window-icon="./Icons/falguni.png" --auto-close --no-cancel --pulsate --width=720 --title "Reconfiguring Fonts" 2>/dev/null
  
 		(
 		# Show the remaining installed fonts
 		echo -e "This box will automatically close in 30s..."
 		dpkg -l fonts\* | grep ^ii | awk '{print $2}'
-		) | zenity --text-info --title "(Installed) Remaining Fonts"\
+		) | zenity --text-info --window-icon="./Icons/falguni.png" --title "(Installed) Remaining Fonts"\
 		--height=480 --width=720 --no-wrap --ok-label "Done" --cancel-label "Proceed"\
 		--timeout=30 2>/dev/null
 

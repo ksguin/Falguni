@@ -16,7 +16,7 @@ else
 	
 #--------- AUDIO ---------#
 	# selecting Audio Software(s) to uninstall
-	AUDIO=$( zenity --list --multiple --title "Select items to Uninstall"\
+	AUDIO=$( zenity --list --multiple --window-icon="./Icons/falguni.png" --title "Select items to Uninstall"\
 				--text "The following Audio Software(s) will be removed" 2>/dev/null\
 				--checklist --height=480 --width=720 --ok-label "Remove" --cancel-label "Skip"\
 				--column "Pick" --column "Software(s)" --column "Description"\
@@ -25,7 +25,7 @@ else
 	#column="2" is sent to output by default
 	
 	if [[ $? -eq 0 && -z "$AUDIO"  ]]; then
-		zenity --warning\
+		zenity --warning --window-icon="./Icons/falguni.png" \
 		--text "\nNo Option Selected. Nothing will be removed!"\
 		2>/dev/null --no-wrap
 	else 
@@ -42,14 +42,14 @@ else
 
 #--------- EMAIL CLIENT ---------#
 	# selecting Email Client(s) to uninstall
-	EMAIL=$( zenity --list --multiple --title "Select items to Uninstall"\
+	EMAIL=$( zenity --list --multiple --window-icon="./Icons/falguni.png" --title "Select items to Uninstall"\
 				--text "The following Email Client(s) will be removed" 2>/dev/null\
 				--checklist --height=480 --width=720 --ok-label "Remove" --cancel-label "Skip"\
 				--column "Pick" --column "Software(s)" --column "Description"\
 				TRUE 		evolution 		"Default GNOME Email & Personal Information Manager" );
 	
 	if [[ $? -eq 0 && -z "$EMAIL"  ]]; then
-		zenity --warning\
+		zenity --warning --window-icon="./Icons/falguni.png" \
 		--text "\nNo Option Selected. Nothing will be removed!"\
 		2>/dev/null --no-wrap
 	else 
@@ -66,7 +66,7 @@ else
 
 #--------- GAMES ---------#
 	# selecting Game(s) to uninstall
-	GAME=$( zenity --list --multiple --title "Select items to Uninstall"\
+	GAME=$( zenity --list --multiple --window-icon="./Icons/falguni.png" --title "Select items to Uninstall"\
 				--text "The following Game(s) will be removed" 2>/dev/null\
 				--checklist --height=480 --width=720 --ok-label "Remove" --cancel-label "Skip"\
 				--column "Pick" --column "Software(s)" --column "Description"\
@@ -77,7 +77,7 @@ else
 				TRUE 		quadrapassel 		"The classic falling-block Game, Tetris" );
 
 	if [[ $? -eq 0 && -z "$GAME"  ]]; then
-		zenity --warning\
+		zenity --warning --window-icon="./Icons/falguni.png" \
 		--text "\nNo Option Selected. Nothing will be removed!"\
 		2>/dev/null --no-wrap
 	else 
@@ -94,7 +94,7 @@ else
 
 #--------- PHOTO ---------#
 	# selecting Photo Software(s) to uninstall
-	PHOTO=$( zenity --list --multiple --title "Select items to Uninstall"\
+	PHOTO=$( zenity --list --multiple --window-icon="./Icons/falguni.png" --title "Select items to Uninstall"\
 				--text "The following Photo Software(s) will be removed" 2>/dev/null\
 				--checklist --height=480 --width=720 --ok-label "Remove" --cancel-label "Skip"\
 				--column "Pick" --column "Software(s)" --column "Description"\
@@ -104,7 +104,7 @@ else
 				TRUE 		shotwell 		"An Image Organizer & simple Image Editor for GNOME" );
 
 	if [[ $? -eq 0 && -z "$PHOTO"  ]]; then
-		zenity --warning\
+		zenity --warning --window-icon="./Icons/falguni.png" \
 		--text "\nNo Option Selected. Nothing will be removed!"\
 		2>/dev/null --no-wrap
 	else 
@@ -121,7 +121,7 @@ else
 
 #--------- UTILITY ---------#
 	# selecting Utility Software(s) to uninstall
-	UTILITY=$( zenity --list --multiple --title "Select items to Uninstall"\
+	UTILITY=$( zenity --list --multiple --window-icon="./Icons/falguni.png" --title "Select items to Uninstall"\
 				--text "The following Utility Software(s) will be removed" 2>/dev/null\
 				--checklist --height=480 --width=720 --ok-label "Remove" --cancel-label "Skip"\
 				--column "Pick" --column "Software(s)" --column "Description"\
@@ -137,7 +137,7 @@ else
 				TRUE 		yelp 			"Default help viewer in GNOME" );
 
 	if [[ $? -eq 0 && -z "$UTILITY"  ]]; then
-		zenity --warning\
+		zenity --warning --window-icon="./Icons/falguni.png" \
 		--text "\nNo Option Selected. Nothing will be removed!"\
 		2>/dev/null --no-wrap
 	else 
@@ -154,7 +154,7 @@ else
 
 #--------- VIDEO ---------#
 	# selecting Video Software(s) to uninstall
-	VIDEO=$( zenity --list --multiple --title "Select items to Uninstall"\
+	VIDEO=$( zenity --list --multiple --window-icon="./Icons/falguni.png" --title "Select items to Uninstall"\
 				--text "The following Video Software(s) will be removed" 2>/dev/null\
 				--checklist --height=480 --width=720 --ok-label "Remove" --cancel-label "Skip"\
 				--column "Pick" --column "Software(s)" --column "Description"\
@@ -162,7 +162,7 @@ else
 				TRUE 		totem		"A movie player for GNOME desktop" );
 	
 	if [[ $? -eq 0 && -z "$VIDEO"  ]]; then
-		zenity --warning\
+		zenity --warning --window-icon="./Icons/falguni.png" \
 		--text "\nNo Option Selected. Nothing will be removed!"\
 		2>/dev/null --no-wrap
 	else 

@@ -1,1 +1,5 @@
 .flagfile.txt
+
+#ignore files in folder /Icons/Install/ but not the folder itself
+/Icons/Install/*
+!/Icons/Install/.gitkeep

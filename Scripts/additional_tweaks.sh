@@ -13,7 +13,7 @@ if [[ $EUID -ne 0 ]]; then
    	exit 1
 else
 #if all permissions granted
-	TWEAK=$( zenity --list --checklist --multiple\
+	TWEAK=$( zenity --list --checklist --multiple --window-icon="./Icons/falguni.png" \
 		2>/dev/null --height=480 --width=720\
 		--title="Select options to Tweak"\
 		--text="The following Setting(s) will be Modified"\
@@ -25,7 +25,7 @@ else
 
 	#column="2" is sent to output by default
 	if [[ $? -eq 0 && -z "$TWEAK"  ]]; then
-		zenity --warning\
+		zenity --warning --window-icon="./Icons/falguni.png" \
 		--text "\nNo Option Selected. Nothing will be changed!"\
 		2>/dev/null --no-wrap
 	else
@@ -37,7 +37,7 @@ else
 			case $option in
 			
 			"Dual-Boot Time Fix")	
-						zenity --question --title=""\
+						zenity --question --window-icon="./Icons/falguni.png" --title=""\
 						--text "\nAre you running Dual Boot with Windows? Apply Dual Boot Time Fix?" --no-wrap\
 						2>/dev/null
 						if [[ $? -eq 0 ]]; then
@@ -67,7 +67,7 @@ else
 							echo "rfkill block bluetooth" > /etc/rc.local
 						fi
 
-						zenity --info --title="Done" --text="\nBluetooth will not start automatically at StartUp"\
+						zenity --info --window-icon="./Icons/falguni.png" --title="Done" --text="\nBluetooth will not start automatically at StartUp"\
 						--timeout=3 --no-wrap 2>/dev/null	
 					;;
 			esac
