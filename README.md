@@ -1,6 +1,11 @@
 <p align="center">
   <img src="https://github.com/ksguin/Falguni/blob/master/Icons/falguni.png" width="64" alt="Falguni Logo" title="Falguni">
 </p>
+<p align="center">
+  <a href="https://github.com/ksguin/Falguni/archive/master.zip">
+    <img src="http://www.pngall.com/wp-content/uploads/2/Download-Button-PNG-Free-Download.png" width="160" alt="Download button" title="Download Falguni">
+  </a>
+</p>
 
 # Falguni
 A must-have GUI-based shell-script for a clean, hassle-free setup for [Ubuntu](https://ubuntu.com/) and Ubuntu-based distros, especially handy if you're new to Linux.
