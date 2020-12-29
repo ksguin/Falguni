@@ -28,11 +28,12 @@ No need to install! Download the zip, extract, and you're good to go!
 - ## Additional Tweaks & Settings ([additional_tweaks.sh](https://github.com/ksguin/Falguni/blob/master/Scripts/additional_tweaks.sh))
   The following tweaks & settings will be available in options in _checklist_.
   
-  | Status			        | Setting 		                | Description 				 	                                    |
+ | Status			        | Setting 		                | Description 				 	                                          |
   | :---: 			        | :------		                | -------------------------------------- 	                        |
-  | <ul><li> [ ] </li></ul>	| Dual-Boot Time Fix   	        | Sync time on both OS when running Dual Boot with Windows          |
-  | <ul><li> [ ] </li></ul>	| Turn Bluetooth Off at StartUp	| Automatically turn Bluetooth Off at system StartUp                |
-
+  | <ul><li> [ ] </li></ul> 	| Dual-Boot Save Last OS Selection  | Save the Last OS even on restart/shutdown and open by default boot on next boot |
+  | <ul><li> [ ] </li></ul>	| Dual-Boot Time Fix   	            | Sync time on both OS when running Dual Boot with Windows                        |
+  | <ul><li> [ ] </li></ul>	| Turn Bluetooth Off at StartUp	    | Automatically turn Bluetooth Off at system StartUp                              |
+  
 - ## Language Settings ([delete_language.sh](https://github.com/ksguin/Falguni/blob/master/Scripts/delete_language.sh))
   The following tweaks will be available in options in _checklist_.
   I have pre-ticked most of them, which I think, should be useful for you! You surely have the full control though!
