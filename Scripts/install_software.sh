@@ -71,6 +71,7 @@ else
 		--column "Pick" --column "Software(s)" 	--column "Description"\
 		FALSE 		Discord			"All-in-one voice and text chat for Gamers"\
 		TRUE 		'Google Chrome' 	"A cross-platform web browser by Google"\
+		TRUE		'Signal'		"Signal - Private Messenger: Say Hello to Privacy"\
 		FALSE		'Telegram Desktop'	"Official Desktop Client for the Telegram Messenger" );
 	
 	
@@ -104,6 +105,17 @@ else
 					# APT_INSTALL_WGET "<Refined static URL to download>""<Term in .deb package to search for>" "Package Display name in UI" "<package name in apt list>"
 					APT_INSTALL_WGET $Url "google-chrome-stable" "Google Chrome" "google-chrome-stable"
 				;;
+				
+			"Signal")			#Signal - Private Messenger: Say Hello to Privacy
+					CHECK_ICON_PRESENT_ELSE_FETCH /Icons/Install/ "signal-desktop.png" "https://icons.iconarchive.com/icons/papirus-team/papirus-apps/64/signal-desktop-icon.png"
+					
+					PubKey="https://updates.signal.org/desktop/apt/keys.asc"
+					RepoCmd="deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main"
+					RepoList="/etc/apt/sources.list.d/signal-xenial.list"
+					
+					#APT_INSTALL_PUBKEY_ADDREPO_INSTALL "<Public software signing key>" "<Repository command to be added>" "<Repository List where it's being added>" "<apt software code e.g. kdenlive>" "Package Display name in UI" "<package name in apt list>"
+					APT_INSTALL_PUBKEY_ADDREPO_INSTALL $PubKey $RepoCmd $RepoList "signal-desktop" "Signal" "signal-desktop"
+				;;
 
 			"Telegram Desktop")		#Official Desktop Client for the Telegram Messenger
 					CHECK_ICON_PRESENT_ELSE_FETCH /Icons/Install/ "telegram-desktop.png" "https://icons.iconarchive.com/icons/froyoshark/enkel/64/Telegram-icon.png"
@@ -125,7 +137,7 @@ else
 		--column "Pick" --column "Software(s)" 	--column "Description"\
 		FALSE 		'Android Studio'	"Android Studio IDE for Android"\
 		TRUE		'Git'			"A Fast, Scalable, Distributed Free & Open-Source VCS"\
-		TRUE 		Stacer 			"Linux System Optimizer & Monitoring"\
+		TRUE 		'Stacer' 		"Linux System Optimizer & Monitoring"\
 		FALSE		'TeamViewer'		"TeamViewer: The Remote Desktop Software"\
 		FALSE		'Visual Studio Code'	"A Free Source-Code Editor made by Microsoft (vscode)" );
 

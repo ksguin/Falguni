@@ -157,6 +157,7 @@ No need to install! Download the zip, extract, and you're good to go!
     | :---: 			        | :------ 	                                        | ------------------------------------------ |
     | <ul><li> [ ] </li></ul>	| [Discord](https://discord.com/)        	        | All-in-one voice and text chat for Gamers  |
     | <ul><li> [x] </li></ul>	| [Google Chrome](https://www.google.com/chrome/)	| A cross-platform web browser by Google     |
+    | <ul><li> [x] </li></ul> 	| [Signal](https://signal.org/)                   | Signal - Private Messenger: Say Hello to Privacy   |
     | <ul><li> [ ] </li></ul>   | [Telegram Desktop](https://telegram.org/)         | Official Desktop Client for the Telegram Messenger |
     
   * ### Utilities
