@@ -35,6 +35,48 @@ APT_INSTALL_PPA_UPDATE_INSTALL() {
 	fi		
 }
 
+#--How to USE--#
+# APT_INSTALL_PUBKEY_ADDREPO_INSTALL "<Public software signing key>" "<Repository command to be added>" "<Repository List where it's being added>" "<apt software code e.g. kdenlive>" "Package Display name in UI" "<package name in apt list>"
+#--------------#
+APT_INSTALL_PUBKEY_ADDREPO_INSTALL() {
+	PubKey=$1
+	RepoCmd=$2
+	RepoList=$3
+	Software=$4
+	Name=$5
+	Aptlisting=$6
+	
+	#if already present, don't install
+	if [[ $(which $Aptlisting | grep -w "$Aptlisting" | awk {'print $0'}) ]]; then
+		zenity --info --timeout 5 --window-icon="./Icons/Install/$Aptlisting.png" \
+		--text="\n$Name Already Installed\t\t"\
+		--title "Installed" --no-wrap 2>/dev/null
+	else
+		#Installing software signing key
+		(wget -q -O- $PubKey | sudo apt-key add - 2>/dev/null | \
+		tee >(xargs -I % echo "#%")) | \
+		zenity --progress --width=720 --pulsate --title="$Name" --window-icon="./Icons/Install/$Aptlisting.png" \
+		--no-cancel --auto-kill --auto-close 2>/dev/null
+		
+		#Adding repository to list of repositories
+		(echo "$RepoCmd" | sudo tee -a $RepoList 2>/dev/null | \
+		tee >(xargs -I % echo "#%")) | \
+		zenity --progress --width=720 --pulsate --title="$Name" --window-icon="./Icons/Install/$Aptlisting.png" \
+		--no-cancel --auto-kill --auto-close 2>/dev/null
+		
+		#Refreshing apt
+		APT_REFRESH
+		
+		#Installing
+		(sudo apt -y install $Software 2>/dev/null | \
+		tee >(xargs -I % echo "#%")) | \
+		zenity --progress --width=720 --pulsate --title="$Name" --window-icon="./Icons/Install/$Aptlisting.png" \
+		--no-cancel --auto-kill --auto-close 2>/dev/null
+		
+		#Installation Complete Dialog
+		INSTALLATION_COMPLETE $Name $Aptlisting
+	fi
+}
 
 #--How to USE--#
 # APT_INSTALL_DIRECT "<apt software code e.g. git>" "Package Display name in UI" "<package name in apt list>"
