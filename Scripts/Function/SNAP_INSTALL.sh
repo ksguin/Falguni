@@ -18,14 +18,14 @@ SNAP_INSTALL() {
 	else
 		sudo snap install $software $classicflag 2>&1 | \
 		tee >( \
-		zenity --progress --pulsate --width=720\
+		zenity --progress --pulsate --width=720 --window-icon="./Icons/Install/$snaplisting.png"\
 		--text="Downloading $Name..." --auto-kill --auto-close --no-cancel\
 		2>/dev/null)
 			
 		#Installation Complete Dialog
 		zenity --info --timeout 5\
 		--text="\nInstallation Complete\t\t"\
-		--title "$Name" --no-wrap 2>/dev/null
+		--title "$Name" --no-wrap --window-icon="./Icons/Install/$snaplisting.png" 2>/dev/null
 	fi
 }
 
