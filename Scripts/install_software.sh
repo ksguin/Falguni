@@ -69,9 +69,10 @@ else
 		--text="The following Software(s) will be Installed"\
 		--ok-label "Install" --cancel-label "Skip"\
 		--column "Pick" --column "Software(s)" 	--column "Description"\
+		TRUE		'Brave'			"Secure, Fast & Private Brave Browser with Adblocker"\
 		FALSE 		Discord			"All-in-one voice and text chat for Gamers"\
-		TRUE 		'Google Chrome' 	"A cross-platform web browser by Google"\
-		TRUE		'Signal'		"Signal - Private Messenger: Say Hello to Privacy"\
+		FALSE 		'Google Chrome' 	"A cross-platform web browser by Google"\
+		FALSE		'Signal'		"Signal - Private Messenger: Say Hello to Privacy"\
 		FALSE		'Telegram Desktop'	"Official Desktop Client for the Telegram Messenger" );
 	
 	
@@ -87,6 +88,13 @@ else
 		for option in $(echo $CNB | tr "|" "\n"); do
 
 			case $option in
+			
+			"Brave")				#Brave Browser
+					CHECK_ICON_PRESENT_ELSE_FETCH /Icons/Install/ "brave-browser.png" "https://icons.iconarchive.com/icons/papirus-team/papirus-apps/64/brave-icon.png"
+					
+					#SNAP_INSTALL <snap software installation code> <Package Display name in UI> <package name in snap list>
+					SNAP_INSTALL "brave" "Brave" "brave"
+				;;
 
 			"Discord")				#Discord
 					CHECK_ICON_PRESENT_ELSE_FETCH /Icons/Install/ "discord.png" "https://icons.iconarchive.com/icons/papirus-team/papirus-apps/64/discord-icon.png"
